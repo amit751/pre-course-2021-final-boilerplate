@@ -1,34 +1,70 @@
+
+function newElement( element , clas , content , appendTo){
+    const x = document.createElement(element);
+    x.classList.add(clas);
+    x.innerText=content;
+    appendTo.append(x);
+
+    return x;
+
+
+}
+let qount =0;
+
 const addButton = document.getElementById("add-button");
 let input = document.getElementById("text-input");
 let viewSection = document.getElementById("view-section");
 let priorityNum = document.getElementById("priority-selector");
 let qounter = document.getElementById("counter");
-let qount =0;
+
+
+
+
 addButton.addEventListener("click", addTodo );
-let arrOfPriority=[];
+
+
+
+
 function addTodo(event){
+    const todoContainer = newElement( "div" , "todo-container" , "" , viewSection);
+    const createdAt = newElement( "div" , "todo-created-at" , new Date().toISOString().slice(0, 19).replace('T', ' ') , todoContainer);
+    const todoText = newElement( "div" , "todo-text" , input.value , todoContainer);
+    const priority = newElement( "div" , "todo-priority" , priorityNum.value , todoContainer);
+
+
+    // const todoContainer = document.createElement("div");
+    // todoContainer.classList.add("todo-container");
+    // viewSection.append(todoContainer);
+    
+    // const createdAt = document.createElement("div");
+    // createdAt.classList.add("todo-created-at");
+    // createdAt.innerText = new Date().toISOString().slice(0, 19).replace('T', ' ');
+    // todoContainer.append(createdAt);
+    
+    // const todoText = document.createElement("div");
+    // todoText.classList.add("todo-text");
+    // todoText.innerText = input.value;
+    // todoContainer.append(todoText);
+    
+    // const priority = document.createElement("div");
+    // priority.classList.add("todo-priority");
+    // priority.innerText= priorityNum.value;
+    // todoContainer.append(priority);
+    
+    
+    // todoContainer.append(createdAt);
+    // todoContainer.append(todoText);
+    
+    // todoText.innerText = input.value;
+    // priority.innerText= priorityNum.value;
+    
+    // viewSection.append(todoContainer);
+   
     
 
-    const todoContainer = document.createElement("div");
-    todoContainer.classList.add("todo-container");
-    const createdAt = document.createElement("div");
-    createdAt.classList.add("todo-created-at");
-    const todoText = document.createElement("div");
-    todoText.classList.add("todo-text");
-    const priority = document.createElement("div");
-    priority.classList.add("todo-priority");
-    todoContainer.append(priority);
-    todoContainer.append(createdAt);
-    todoContainer.append(todoText);
-    todoText.innerText = input.value;
-    viewSection.append(todoContainer);
-    priority.innerText= priorityNum.value;
     
     
-
     
-    
-    input.innerText="";
     input.value="";
     
     
