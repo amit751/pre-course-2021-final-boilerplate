@@ -10,17 +10,22 @@ function newElement( element , clas , content , appendTo){
 
 }
 let qount =0;
-
-const addButton = document.getElementById("add-button");
-let input = document.getElementById("text-input");
-let viewSection = document.getElementById("view-section");
-let priorityNum = document.getElementById("priority-selector");
-let qounter = document.getElementById("counter");
+function catchElement(id){
+    const x = document.getElementById(id);
+    return x;
+}
 
 
 
+const addButton = catchElement("add-button");
+let input = catchElement("text-input");
+let viewSection = catchElement("view-section");
+let priorityNum = catchElement("priority-selector");
+let qounter = catchElement("counter");
+const sortButton = catchElement("sort-button");
 
 addButton.addEventListener("click", addTodo );
+sortButton.addEventListener("click",sorting);
 
 
 
@@ -40,8 +45,8 @@ function addTodo(event){
     
 }
 
-const sortButton = document.getElementById("sort-button");
-sortButton.addEventListener("click",sorting);
+
+
 function sorting(event){
     
     
