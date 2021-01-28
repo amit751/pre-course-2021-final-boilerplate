@@ -83,7 +83,7 @@ function sorting(event){
     div.innerHTML=finelHtml;
     // viewSection.append(div);
     viewSection.innerHTML =div.innerHTML;
-
+}
     
     // viewSection.innerHTML=finelHtml;
     // str1.concat(str2);
@@ -134,11 +134,11 @@ function sorting(event){
 
     
     
+       
     
     
     
-    
-}
+
 
 
 console.log("dsfrdsf".concat("gdf"));
