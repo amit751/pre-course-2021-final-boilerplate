@@ -27,50 +27,14 @@ addButton.addEventListener("click", addTodo );
 
 function addTodo(event){
     const todoContainer = newElement( "div" , "todo-container" , "" , viewSection);
-    const createdAt = newElement( "div" , "todo-created-at" , new Date().toISOString().slice(0, 19).replace('T', ' ') , todoContainer);
+    const createdAt = newElement( "div" , "todo-created-at" , new Date().toLocaleString().replace('.', '-').replace('.', '-').replace(',', ' ') , todoContainer);
     const todoText = newElement( "div" , "todo-text" , input.value , todoContainer);
     const priority = newElement( "div" , "todo-priority" , priorityNum.value , todoContainer);
 
-
-    // const todoContainer = document.createElement("div");
-    // todoContainer.classList.add("todo-container");
-    // viewSection.append(todoContainer);
-    
-    // const createdAt = document.createElement("div");
-    // createdAt.classList.add("todo-created-at");
-    // createdAt.innerText = new Date().toISOString().slice(0, 19).replace('T', ' ');
-    // todoContainer.append(createdAt);
-    
-    // const todoText = document.createElement("div");
-    // todoText.classList.add("todo-text");
-    // todoText.innerText = input.value;
-    // todoContainer.append(todoText);
-    
-    // const priority = document.createElement("div");
-    // priority.classList.add("todo-priority");
-    // priority.innerText= priorityNum.value;
-    // todoContainer.append(priority);
-    
-    
-    // todoContainer.append(createdAt);
-    // todoContainer.append(todoText);
-    
-    // todoText.innerText = input.value;
-    // priority.innerText= priorityNum.value;
-    
-    // viewSection.append(todoContainer);
-   
-    
-
-    
-    
-    
     input.value="";
-    
-    
     qount++;
     qounter.innerText=qount;
-    qounter.value=qount;
+    // qounter.value=qount;
     
     
     
