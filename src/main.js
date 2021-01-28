@@ -45,9 +45,10 @@ sortButton.addEventListener("click",sorting);
 function sorting(event){
     let priorities = document.getElementsByClassName("todo-priority");
     console.log(priorities);
-    viewSection.innerHTML="";
-    let newPriority= sort(priorities);
-    console.log(newPriority);
+    // viewSection.innerHTML="";
+    // let newPriority= test(priorities);
+    // console.log(newPriority);
+    console.log(sort(priorities));
 
     // for (const priority of priorities) {
     //     arrOfPriority.push(priority.innerText);
@@ -58,12 +59,31 @@ function sorting(event){
 
 
 
+// function sort(arr){
+//     let finalArr=[];
+//     let place=0;
+//     for (let i=0 ; i<arr.length ; i++){
+//         for(let j = 0 ; j<arr.length-1 ; j++){
+//             if(Number(arr[0].innerText)<Number(arr[j+1].innerText)){
+//                 place++;
+//             }
+//         }
+//         finalArr[place]=arr[0];
+//         arr.push(arr.shift());
+//         place=0;
+//     }
+//     return(finalArr);
+// }    
+
+
+
+
 function sort(arr){
     let finalArr=[];
     let place=0;
     for (let i=0 ; i<arr.length ; i++){
         for(let j = 0 ; j<arr.length-1 ; j++){
-            if(Number(arr[0].innerText)<Number(arr[j+1].innerText)){
+            if(arr[0]<arr[j+1]){
                 place++;
             }
         }
@@ -71,13 +91,8 @@ function sort(arr){
         arr.push(arr.shift());
         place=0;
     }
-    return(finalArr);
+    console.log(finalArr);
 }    
-
-
-
-
-
 
 
 
