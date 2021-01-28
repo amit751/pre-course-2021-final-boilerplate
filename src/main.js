@@ -47,12 +47,43 @@ function sorting(event){
     
     let priorities = document.getElementsByClassName("todo-priority");
     console.log(priorities);
+   
+   
     for (const todo of  priorities) {
         todo.parentElement.classList.add(todo.innerText);
     }
-    let newDiv = document.getElementsByClassName("1");
-    console.log(newDiv[0].innerHTML);
-    viewSection.innerHTML=newDiv[0].innerHTML;
+    
+    
+    let innerHtml="";
+    let finelHtml="";
+    for(let i=1; i<6;i++){
+        let order = document.getElementsByClassName(i);
+        
+        
+        for(let j=0; j<order.length;j++){
+            console.log(order[j].innerHTML);
+            innerHtml=innerHtml.concat(order[j].innerHTML);
+            console.log(innerHtml);
+
+        }
+        finelHtml=finelHtml.concat(innerHtml);
+
+    }
+    console.log(finelHtml);
+    let div = document.createElement("div");
+    div.innerHTML=finelHtml;
+    // viewSection.append(div);
+    viewSection.innerHTML =div.innerHTML;
+
+    
+    // viewSection.innerHTML=finelHtml;
+    // str1.concat(str2);
+   
+   
+   
+    // let newDiv = document.getElementsByClassName("1");
+    // console.log(newDiv[0].innerHTML);
+    // viewSection.innerHTML=newDiv[0].innerHTML;
     
     
     
@@ -99,6 +130,9 @@ function sorting(event){
     
     
 }
+
+
+console.log("dsfrdsf".concat("gdf"));
 //  document.getElementsByTagName("H1")[0].setAttribute("class", "democlass");
    
    
