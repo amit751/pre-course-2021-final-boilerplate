@@ -24,13 +24,13 @@ function addTodo(event){
     viewSection.append(todoContainer);
     priority.innerText= priorityNum.value;
     
-    // arrOfPriority.push(priorityNum.value);
+    
 
     
     
     input.innerText="";
     input.value="";
-    // priority.value="";
+    
     
     qount++;
     qounter.innerText=qount;
@@ -43,60 +43,89 @@ function addTodo(event){
 const sortButton = document.getElementById("sort-button");
 sortButton.addEventListener("click",sorting);
 function sorting(event){
+    
+    
     let priorities = document.getElementsByClassName("todo-priority");
     console.log(priorities);
-    // viewSection.innerHTML="";
-    // let newPriority= test(priorities);
-    // console.log(newPriority);
-    console.log(sort(priorities));
+    for (const todo of  priorities) {
+        todo.parentElement.classList.add(todo.innerText);
+    }
+    let newDiv = document.getElementsByClassName("1");
+    console.log(newDiv[0].innerHTML);
+    viewSection.innerHTML=newDiv[0].innerHTML;
+    
+    
+    
+    
+    
+    
+//     var x = document.getElementById("myList").innerHTML;
+//   document.getElementById("demo").innerHTML = x;
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    // viewSection.innerHTML= "`" + newDiv[0] +"`";
+    
+    // let xxx=document.createElement("div");
+    // xxx.innerHTML="`" + newDiv[0] +"`";
 
-    // for (const priority of priorities) {
-    //     arrOfPriority.push(priority.innerText);
-    // }
-    // console.log(arrOfPriority);
+    // let newView = document.createElement("div");
+    // newView.append(xxx);
+    // viewSection.append(newView);
+
+    // newView.classList.add("view-section");
+    // // let test = document.getElementsByClassName("1");
+    // console.log(document.getElementsByClassName("1").innerHTML);
+
+    
+    // newView.innerHTML= document.getElementsByClassName("1");
+    // viewSection.append(newView);
+
+
+    
+    
+    
+    
+    
     
 }
-
-
-
-// function sort(arr){
-//     let finalArr=[];
-//     let place=0;
-//     for (let i=0 ; i<arr.length ; i++){
-//         for(let j = 0 ; j<arr.length-1 ; j++){
-//             if(Number(arr[0].innerText)<Number(arr[j+1].innerText)){
-//                 place++;
+//  document.getElementsByTagName("H1")[0].setAttribute("class", "democlass");
+   
+   
+// function order(arr){
+//     let min=1;
+//     let place;
+//     for(let i=0 ; i<arr.length ; i++){
+//         for (let x of arr) {
+//             if(Number(arr[i].innerText)<=min){
+//                 min=arr[i];
+//                 place=i;
 //             }
 //         }
-//         finalArr[place]=arr[0];
-//         arr.push(arr.shift());
-//         place=0;
+//         viewSection.append(arr[place]);
+//         arr[place].innerText=null;
 //     }
-//     return(finalArr);
-// }    
+// }
+   
+   
 
-
-
-
-function sort(arr){
-    let finalArr=[];
-    let place=0;
-    for (let i=0 ; i<arr.length ; i++){
-        for(let j = 0 ; j<arr.length-1 ; j++){
-            if(arr[0]<arr[j+1]){
-                place++;
-            }
-        }
-        finalArr[place]=arr[0];
-        arr.push(arr.shift());
-        place=0;
-    }
-    console.log(finalArr);
-}    
-
-
-
-
-
-// let priorities = document.getElementsByClassName("todo-priority");
-// console.log(priorities);
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
