@@ -57,16 +57,20 @@ function sorting(event){
     let innerHtml="";
     let finelHtml="";
     for(let i=1; i<6;i++){
+        console.log(i);
         let order = document.getElementsByClassName(i);
         
         
         for(let j=0; j<order.length;j++){
+            console.log(order.length);
+
             console.log(order[j].innerHTML);
             innerHtml=innerHtml.concat(order[j].innerHTML);
             console.log(innerHtml);
 
         }
         finelHtml=finelHtml.concat(innerHtml);
+        innerHtml="";
 
     }
     console.log(finelHtml);
