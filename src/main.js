@@ -28,14 +28,46 @@ addButton.addEventListener("click", addTodo );
 sortButton.addEventListener("click",sorting);
 let divchek  = catchElement("chek");
 
-const todosobject = [];
+const todosObjects = [];
 
 function addTodo(event){
     const todoContainer = newElement( "div" , "todo-container" , "" , viewSection);
     const createdAt = newElement( "div" , "todo-created-at" , new Date().toLocaleString().replace('.', '-').replace('.', '-').replace(',', ' ') , todoContainer);
     const todoText = newElement( "div" , "todo-text" , input.value , todoContainer);
     const priority = newElement( "div" , "todo-priority" , priorityNum.value , todoContainer);
+
+
+
+    const todoObj ={};
+    todoObj.priority = priorityNum.value;
+    todoObj.element = todoContainer;
+    todoObj.html = todoContainer.innerHTML;
+    todoObj.text = input.value;
+    todoObj.time = new Date().toLocaleString().replace('.', '-').replace('.', '-').replace(',', ' ');
+
+    todosObjects.push(todoObj);
+
+    console.log(todosObjects);
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     console.log(priorityNum.value);
+    console.log(todoContainer);
+    console.log(todoContainer.innerHTML);
+    console.log(todoContainer.textContent);
 
     input.value="";
     qount++;
@@ -45,32 +77,6 @@ function addTodo(event){
     
     
 }
-
-
-
-   
-// function sorting(event){
-//     let priorities = document.getElementsByClassName("todo-priority");
-//     console.log(priorities);
-//     let test= document.createElement("div");
-//     for (const todo of  priorities) {
-//         todo.parentElement.classList.add(todo.innerText);
-//     }
-//     for(let i=1 ; i<6 ;  i++){
-//         let order=viewSection.getElementsByClassName(i.toString());
-//         console.log(order);
-//         let length = order.length;
-//         for(let j=0; j<length;j++){
-//             test.append(order[0]);
-              
-//         }
-//     }
-//     console.log(test);
-//     console.log(test.innerHTML);
-//     console.log(viewSection.innerHTML);
-//     divchek.append(test);
-
-// }
 
 
 function sorting(event){
@@ -95,6 +101,32 @@ function sorting(event){
     viewSection.append(test);
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // let test= document.createElement("div");
 
@@ -136,6 +168,28 @@ function sorting(event){
 //     console.log(test);
 //     console.log(test.innerHTML);
 //     divchek.innerHTML=test.innerHTML;
+
+// }
+// function sorting(event){
+//     let priorities = document.getElementsByClassName("todo-priority");
+//     console.log(priorities);
+//     let test= document.createElement("div");
+//     for (const todo of  priorities) {
+//         todo.parentElement.classList.add(todo.innerText);
+//     }
+//     for(let i=1 ; i<6 ;  i++){
+//         let order=viewSection.getElementsByClassName(i.toString());
+//         console.log(order);
+//         let length = order.length;
+//         for(let j=0; j<length;j++){
+//             test.append(order[0]);
+              
+//         }
+//     }
+//     console.log(test);
+//     console.log(test.innerHTML);
+//     console.log(viewSection.innerHTML);
+//     divchek.append(test);
 
 // }
 
