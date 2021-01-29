@@ -9,7 +9,11 @@ function newElement( element , clas , content , appendTo){
 
 
 }
-let qount =0;
+let qounter = catchElement("counter");
+// localStorage.setItem("qounter", "");
+let qount =Number(localStorage.getItem("qounter"));
+qounter.innerText=qount;
+
 function catchElement(id){
     const x = document.getElementById(id);
     return x;
@@ -35,7 +39,7 @@ const addButton = catchElement("add-button");
 let input = catchElement("text-input");
 let viewSection = catchElement("view-section");
 let priorityNum = catchElement("priority-selector");
-let qounter = catchElement("counter");
+
 const sortButton = catchElement("sort-button");
 
 addButton.addEventListener("click", addTodo );
@@ -76,6 +80,7 @@ function addTodo(event){
     input.value="";
     qount++;
     qounter.innerText=qount;
+    localStorage.setItem("qounter" ,qount);
 
     
     
