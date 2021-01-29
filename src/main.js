@@ -15,7 +15,21 @@ function catchElement(id){
     return x;
 }
 
+window.onload = function(){
 
+    if(JSON.parse(localStorage.getItem("todosObjects"))){
+        const previusObj = JSON.parse(localStorage.getItem("todosObjects"));
+        for (const obj of sort(previusObj)){
+            
+
+            const todoContainer = newElement( "div" , "todo-container" , "" , viewSection);
+            const createdAt = newElement( "div" , "todo-created-at" , obj.date , todoContainer);
+            const todoText = newElement( "div" , "todo-text" , obj.text , todoContainer);
+            const priority = newElement( "div" , "todo-priority" , obj.priority , todoContainer);
+            
+        }
+    }
+}
 
 
 const addButton = catchElement("add-button");
@@ -44,6 +58,12 @@ function addTodo(event){
     todoObj.priority = priorityNum.value; 
     todoObj.date =  new Date().toLocaleString().replace('.', '-').replace('.', '-').replace(',', ' ') ;
     todosObjects.push(todoObj);
+    
+    let todosObjsJason=JSON.stringify(todosObjects);
+    localStorage.clear();
+    localStorage.setItem("todosObjects" , todosObjsJason);
+    
+    
     console.log(todoObj);
     console.log(todosObjects);
 
