@@ -22,7 +22,7 @@ function catchElement(id){
 window.onload = function(){
     if(JSON.parse(localStorage.getItem("todosObjects"))){
         const previusObj = JSON.parse(localStorage.getItem("todosObjects"));
-        for (const obj of sort(previusObj)){
+        for (const obj of previusObj){
             
 
             const todoContainer = newElement( "div" , "todo-container" , "" , viewSection);
@@ -38,7 +38,7 @@ window.onload = function(){
 const addButton = catchElement("add-button");
 let input = catchElement("text-input");
 let viewSection = catchElement("view-section");
-let priorityNum = catchElement("priority-selector");
+let priorityNum = catchElement("priority-selector");  //num
 
 const sortButton = catchElement("sort-button");
 
@@ -58,13 +58,13 @@ function addTodo(event){
     const todoContainer = newElement( "div" , "todo-container" , "" , viewSection);
     const createdAt = newElement( "div" , "todo-created-at" , new Date().toLocaleString().replace('.', '-').replace('.', '-').replace(',', ' ') , todoContainer);
     const todoText = newElement( "div" , "todo-text" , input.value , todoContainer);
-    const priority = newElement( "div" , "todo-priority" , priorityNum.value , todoContainer);
+    const priority = newElement( "div" , "todo-priority" , priorityNum.value , todoContainer); //num
 
 
 
     const todoObj ={};
     todoObj.text =  input.value;
-    todoObj.priority = priorityNum.value; 
+    todoObj.priority = priorityNum.value; //num
     todoObj.date =  new Date().toLocaleString().replace('.', '-').replace('.', '-').replace(',', ' ') ;
     todosObjects.push(todoObj);
     
