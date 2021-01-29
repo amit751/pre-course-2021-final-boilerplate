@@ -17,6 +17,7 @@ function catchElement(id){
 
 
 
+
 const addButton = catchElement("add-button");
 let input = catchElement("text-input");
 let viewSection = catchElement("view-section");
@@ -25,8 +26,8 @@ let qounter = catchElement("counter");
 const sortButton = catchElement("sort-button");
 
 addButton.addEventListener("click", addTodo );
-sortButton.addEventListener("click",sorting);
-let divchek  = catchElement("chek");
+sortButton.addEventListener("click",sorting2);
+
 
 const todosObjects = [];
 
@@ -39,40 +40,18 @@ function addTodo(event){
 
 
     const todoObj ={};
-    todoObj.priority = priorityNum.value;
-    todoObj.element = todoContainer;
-    todoObj.html = todoContainer.innerHTML;
-    todoObj.text = input.value;
-    todoObj.time = new Date().toLocaleString().replace('.', '-').replace('.', '-').replace(',', ' ');
-
+    todoObj.text =  input.value;
+    todoObj.priority = priorityNum.value; 
+    todoObj.date =  new Date().toLocaleString().replace('.', '-').replace('.', '-').replace(',', ' ') ;
     todosObjects.push(todoObj);
-
+    console.log(todoObj);
     console.log(todosObjects);
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    console.log(priorityNum.value);
-    console.log(todoContainer);
-    console.log(todoContainer.innerHTML);
-    console.log(todoContainer.textContent);
+
 
     input.value="";
     qount++;
     qounter.innerText=qount;
-    // qounter.value=qount;
+
     
     
     
@@ -104,6 +83,38 @@ function sorting(event){
 
 
 
+function sort(arr){
+    const newArr=[];
+    for(let i =5 ; i>0 ; i--){
+        for (const obj of arr) {
+
+            if( obj.priority === i.toString()){
+                newArr.push(obj);
+                console.log(newArr);
+            } 
+        } 
+    }
+    console.log(newArr);
+    return newArr;
+}
+
+
+function sorting2(){
+    console.log(todosObjects);
+    const arrey = sort(todosObjects);
+    console.log(arrey);
+    viewSection.innerHTML="";
+    for (const obj of arrey) {
+        
+
+        const todoContainer = newElement( "div" , "todo-container" , "" , viewSection);
+        const createdAt = newElement( "div" , "todo-created-at" , obj.date , todoContainer);
+        const todoText = newElement( "div" , "todo-text" , obj.text , todoContainer);
+        const priority = newElement( "div" , "todo-priority" , obj.priority , todoContainer);
+        
+    }
+    console.log(todosObjects);
+}
 
 
 
@@ -124,10 +135,7 @@ function sorting(event){
 
 
 
-
-
-
-
+// let divchek  = catchElement("chek");
 // let test= document.createElement("div");
 
 // function sorting(event){
@@ -192,6 +200,8 @@ function sorting(event){
 //     divchek.append(test);
 
 // }
+
+// function sort(arr){
 
 
 
