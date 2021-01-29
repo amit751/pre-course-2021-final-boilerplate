@@ -16,7 +16,6 @@ function catchElement(id){
 }
 
 window.onload = function(){
-
     if(JSON.parse(localStorage.getItem("todosObjects"))){
         const previusObj = JSON.parse(localStorage.getItem("todosObjects"));
         for (const obj of sort(previusObj)){
@@ -26,8 +25,8 @@ window.onload = function(){
             const createdAt = newElement( "div" , "todo-created-at" , obj.date , todoContainer);
             const todoText = newElement( "div" , "todo-text" , obj.text , todoContainer);
             const priority = newElement( "div" , "todo-priority" , obj.priority , todoContainer);
-            
         }
+        
     }
 }
 
@@ -41,9 +40,15 @@ const sortButton = catchElement("sort-button");
 
 addButton.addEventListener("click", addTodo );
 sortButton.addEventListener("click",sorting2);
+let todosObjects=[];
 
 
-const todosObjects = [];
+
+
+if(JSON.parse(localStorage.getItem("todosObjects"))){
+     todosObjects=  JSON.parse(localStorage.getItem("todosObjects"));   
+}else{ todosObjects=[];
+}
 
 function addTodo(event){
     const todoContainer = newElement( "div" , "todo-container" , "" , viewSection);
@@ -64,8 +69,8 @@ function addTodo(event){
     localStorage.setItem("todosObjects" , todosObjsJason);
     
     
-    console.log(todoObj);
-    console.log(todosObjects);
+    // console.log(todoObj);
+    // console.log(todosObjects);
 
 
     input.value="";
@@ -78,28 +83,7 @@ function addTodo(event){
 }
 
 
-function sorting(event){
-    let priorities = document.getElementsByClassName("todo-priority");
-    console.log(priorities);
-    let test= document.createElement("div");
-    for (const todo of  priorities) {
-        todo.parentElement.classList.add(todo.innerText);
-    }
-    for(let i=5 ; i>0 ;  i--){
-        let order=viewSection.getElementsByClassName(i.toString());
-        console.log(order);
-        let length = order.length;
-        for(let j=0; j<length;j++){
-            test.append(order[0]);
-              
-        }
-    }
-    console.log(test);
-    console.log(test.innerHTML);
-    console.log(viewSection.innerHTML);
-    viewSection.append(test);
 
-}
 
 
 
@@ -110,19 +94,19 @@ function sort(arr){
 
             if( obj.priority === i.toString()){
                 newArr.push(obj);
-                console.log(newArr);
+                // console.log(newArr);
             } 
         } 
     }
-    console.log(newArr);
+    // console.log(newArr);
     return newArr;
 }
 
 
 function sorting2(){
-    console.log(todosObjects);
+    // console.log(todosObjects);
     const arrey = sort(todosObjects);
-    console.log(arrey);
+    // console.log(arrey);
     viewSection.innerHTML="";
     for (const obj of arrey) {
         
@@ -224,6 +208,29 @@ function sorting2(){
 // function sort(arr){
 
 
+
+// function sorting(event){
+//     let priorities = document.getElementsByClassName("todo-priority");
+//     console.log(priorities);
+//     let test= document.createElement("div");
+//     for (const todo of  priorities) {
+//         todo.parentElement.classList.add(todo.innerText);
+//     }
+//     for(let i=5 ; i>0 ;  i--){
+//         let order=viewSection.getElementsByClassName(i.toString());
+//         console.log(order);
+//         let length = order.length;
+//         for(let j=0; j<length;j++){
+//             test.append(order[0]);
+              
+//         }
+//     }
+//     console.log(test);
+//     console.log(test.innerHTML);
+//     console.log(viewSection.innerHTML);
+//     viewSection.append(test);
+
+// }
 
 
 
