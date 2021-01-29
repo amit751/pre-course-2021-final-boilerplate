@@ -9,8 +9,9 @@ function newElement( element , clas , content , appendTo){
 
 
 }
+
 let qounter = catchElement("counter");
-// localStorage.setItem("qounter", "");
+
 let qount =Number(localStorage.getItem("qounter"));
 qounter.innerText=qount;
 
@@ -73,8 +74,7 @@ function addTodo(event){
     localStorage.setItem("todosObjects" , todosObjsJason);
     
     
-    // console.log(todoObj);
-    // console.log(todosObjects);
+   
 
 
     input.value="";
@@ -99,19 +99,19 @@ function sort(arr){
 
             if( obj.priority === i.toString()){
                 newArr.push(obj);
-                // console.log(newArr);
+                
             } 
         } 
     }
-    // console.log(newArr);
+    
     return newArr;
 }
 
 
 function sorting2(){
-    // console.log(todosObjects);
+    
     const arrey = sort(todosObjects);
-    // console.log(arrey);
+    
     viewSection.innerHTML="";
     for (const obj of arrey) {
         
@@ -122,7 +122,7 @@ function sorting2(){
         const priority = newElement( "div" , "todo-priority" , obj.priority , todoContainer);
         
     }
-    console.log(todosObjects);
+    
 }
 
 
@@ -142,100 +142,6 @@ function sorting2(){
 
 
 
-
-
-// let divchek  = catchElement("chek");
-// let test= document.createElement("div");
-
-// function sorting(event){
-//     let priorities = viewSection.getElementsByClassName("todo-priority");
-//     let test= document.createElement("div");
-//     console.log(priorities);
-//     for(let i=1 ; i<6 ;  i++){
-//         for (const num of priorities){
-//             if(num.innerText===i.toString()){
-//                 test.innerHTML=num.parentElement.innerHTML;
-//                 console.log(num.parentElement.innerHTML);
-
-//             }
-//         }
-//     }
-//     divchek.innerHTML=test.innerHTML;
-
-
-// }
-
-
-
-
-
-
-// let test= document.createElement("div");
-//     for (const todo of  priorities) {
-//         todo.parentElement.classList.add(todo.innerText);
-//     }
-//     for(let i=1 ; i<6 ;  i++){
-//         let order=document.getElementsByClassName(i.toString());
-//         console.log(order);
-//         for(let j=0; j<order.length;j++){
-//             test.append(order[j]);
-              
-//         }
-//     }
-//     console.log(test);
-//     console.log(test.innerHTML);
-//     divchek.innerHTML=test.innerHTML;
-
-// }
-// function sorting(event){
-//     let priorities = document.getElementsByClassName("todo-priority");
-//     console.log(priorities);
-//     let test= document.createElement("div");
-//     for (const todo of  priorities) {
-//         todo.parentElement.classList.add(todo.innerText);
-//     }
-//     for(let i=1 ; i<6 ;  i++){
-//         let order=viewSection.getElementsByClassName(i.toString());
-//         console.log(order);
-//         let length = order.length;
-//         for(let j=0; j<length;j++){
-//             test.append(order[0]);
-              
-//         }
-//     }
-//     console.log(test);
-//     console.log(test.innerHTML);
-//     console.log(viewSection.innerHTML);
-//     divchek.append(test);
-
-// }
-
-// function sort(arr){
-
-
-
-// function sorting(event){
-//     let priorities = document.getElementsByClassName("todo-priority");
-//     console.log(priorities);
-//     let test= document.createElement("div");
-//     for (const todo of  priorities) {
-//         todo.parentElement.classList.add(todo.innerText);
-//     }
-//     for(let i=5 ; i>0 ;  i--){
-//         let order=viewSection.getElementsByClassName(i.toString());
-//         console.log(order);
-//         let length = order.length;
-//         for(let j=0; j<length;j++){
-//             test.append(order[0]);
-              
-//         }
-//     }
-//     console.log(test);
-//     console.log(test.innerHTML);
-//     console.log(viewSection.innerHTML);
-//     viewSection.append(test);
-
-// }
 
 
 
