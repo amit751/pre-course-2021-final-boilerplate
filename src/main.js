@@ -31,33 +31,45 @@ window.onload = function(){
             const priority = newElement( "div" , "todo-priority" , obj.priority , todoContainer);
             const deletButton = newElement( "button" , "delete" , "delete" ,todoContainer); //new button-pass the test
             const markButton = newElement( "button" , "mark" , "mark" ,todoContainer); //new button-pass the test
+            deletButton.addEventListener("click" , deleting ); //n
+            markButton.addEventListener("click" , marking ); //n
            
             
 
         }
+        // const allDelets = document.getElementsByClassName("delete");   //new pass
+        // const allMarks = document.getElementsByClassName("mark");   //new pass
+        // for (const button of allDelets) {
+        //     button.addEventListener("click" , deleting );
+        // }
+        // const allMarks = document.getElementsByClassName("mark");   //new pass
+        // for (const button of allMarks) {
+        //     button.addEventListener("click" , marking );
+        // }
         
     }
 }
 
-const allDelets = document.getElementsByClassName("delete");
-for (const button of allDelets) {
-    button.addEventListener("click" , deleting );
-}
-const allMarks = document.getElementsByClassName("mark");
-for (const button of allMarks) {
-    button.addEventListener("click" , marking );
-}
 
-// function deleting(event){
+
+function deleting(event){  //new pass
+    for (const obj of todosObjects) {
+        console.log(obj);
+        console.log(obj.innerHTML);
+        console.log(event.currentTarget.parentElement.innerHTML);
+       if(obj.containerInnerHtml===event.currentTarget.parentElement.innerHTML){
+           obj.status="deleted";
+       } 
+    }
+    localStorage.setItem("todosObjects" , JSON.stringify(todosObjects));
+    event.currentTarget.parentElement.remove();
     
-    
-//     event.currentTarget.parentElement.remove();
-//     --qount;
-//     qounter.innerText=qount;
-//     localStorage.setItem("qounter" ,qount);
+    --qount;
+    qounter.innerText=qount;
+    localStorage.setItem("qounter" ,qount);
 
 
-// }
+}
 
 
 const addButton = catchElement("add-button");
@@ -84,6 +96,12 @@ function addTodo(event){
     const createdAt = newElement( "div" , "todo-created-at" , new Date().toLocaleString().replace('.', '-').replace('.', '-').replace(',', ' ') , todoContainer);
     const todoText = newElement( "div" , "todo-text" , input.value , todoContainer);
     const priority = newElement( "div" , "todo-priority" , priorityNum.value , todoContainer); //num
+    const deletButton = newElement( "button" , "delete" , "delete" ,todoContainer); //new button-pass the test
+    const markButton = newElement( "button" , "mark" , "mark" ,todoContainer); //new button-pass the test
+    deletButton.addEventListener("click" , deleting ); //n
+    markButton.addEventListener("click" , marking ); //n
+    console.log(todoContainer.innerHTML);
+               
 
 
 
@@ -91,6 +109,7 @@ function addTodo(event){
     todoObj.text =  input.value;
     todoObj.priority = priorityNum.value; //num
     todoObj.date =  new Date().toLocaleString().replace('.', '-').replace('.', '-').replace(',', ' ') ;
+    todoObj.containerInnerHtml = todoContainer.innerHTML;
     todosObjects.push(todoObj);
     
     let todosObjsJason=JSON.stringify(todosObjects);
@@ -109,6 +128,9 @@ function addTodo(event){
     
     
     
+}
+function marking(){
+    console.log(1);
 }
 
 
@@ -151,7 +173,15 @@ function sorting2(){
 
 
 
+// const allDelets = document.getElementsByClassName("delete");   //new pass
 
+// for (const button of allDelets) {
+//     button.addEventListener("click" , deleting );
+// }
+// const allMarks = document.getElementsByClassName("mark");   //new pass
+// for (const button of allMarks) {
+//     button.addEventListener("click" , marking );
+// }
 
 
 
