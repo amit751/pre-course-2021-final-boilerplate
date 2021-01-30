@@ -10,6 +10,9 @@ function newElement( element , clas , content , appendTo){
 
 }
 
+
+const list = catchElement("list");
+
 let qounter = catchElement("counter");
 
 let qount =Number(localStorage.getItem("qounter"));
@@ -25,7 +28,8 @@ window.onload = function(){
         const previusObj = JSON.parse(localStorage.getItem("todosObjects"));
         for (const obj of previusObj){
             if(obj.status!== "deleted"){
-                const todoContainer = newElement( "div" , "todo-container" , "" , viewSection);
+                const listItem = newElement( "li" , "list-item" , "" , list);
+                const todoContainer = newElement( "div" , "todo-container" , "" , listItem);
                 const createdAt = newElement( "div" , "todo-created-at" , obj.date , todoContainer);
                 const todoText = newElement( "div" , "todo-text" , obj.text , todoContainer);
                 const priority = newElement( "div" , "todo-priority" , obj.priority , todoContainer);
@@ -55,7 +59,7 @@ function deleting(event){  //new pass
        } 
     }
     localStorage.setItem("todosObjects" , JSON.stringify(todosObjects));
-    event.currentTarget.parentElement.remove();
+    event.currentTarget.parentElement.parentElement.remove();
     
     --qount;
     qounter.innerText=qount;
@@ -85,7 +89,8 @@ if(JSON.parse(localStorage.getItem("todosObjects"))){
 }
 
 function addTodo(event){
-    const todoContainer = newElement( "div" , "todo-container" , "" , viewSection);
+    const listItem = newElement( "li" , "list-item" , "" , list);
+    const todoContainer = newElement( "div" , "todo-container" , "" ,  listItem);
     const createdAt = newElement( "div" , "todo-created-at" , new Date().toLocaleString().replace('.', '-').replace('.', '-').replace(',', ' ') , todoContainer);
     const todoText = newElement( "div" , "todo-text" , input.value , todoContainer);
     const priority = newElement( "div" , "todo-priority" , priorityNum.value , todoContainer); //num
@@ -158,12 +163,11 @@ function sorting2(){
     
     const arrey = sort(todosObjects);
     
-    viewSection.innerHTML="";
+    list.innerHTML="";
     for (const obj of arrey) {
         if(obj.status!== "deleted"){
-        
-
-            const todoContainer = newElement( "div" , "todo-container" , "" , viewSection);
+            const listItem = newElement( "li" , "list-item" , "" , list);
+            const todoContainer = newElement( "div" , "todo-container" , "" , listItem);
             const createdAt = newElement( "div" , "todo-created-at" , obj.date , todoContainer);
             const todoText = newElement( "div" , "todo-text" , obj.text , todoContainer);
             const priority = newElement( "div" , "todo-priority" , obj.priority , todoContainer);
