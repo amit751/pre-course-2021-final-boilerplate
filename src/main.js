@@ -80,6 +80,7 @@ const sortButton = catchElement("sort-button");
 addButton.addEventListener("click", addTodo );
 sortButton.addEventListener("click",sorting2);
 let todosObjects=[];
+let witchIcon;
 
 
 
@@ -91,6 +92,7 @@ if(JSON.parse(localStorage.getItem("todosObjects"))){
 
 function addTodo(event){
     const listItem = newElement( "li" , "list-item" , "" , list);
+    listItem.classList.add(witchIcon);////////////////////////////////////////////////////////////
     const todoContainer = newElement( "div" , "todo-container" , "" ,  listItem);
     const createdAt = newElement( "span" , "todo-created-at" , new Date().toLocaleString().replace('.', '-').replace('.', '-').replace(',', ' ') , todoContainer);
     const todoText = newElement( "span" , "todo-text" , input.value , todoContainer);
@@ -130,11 +132,11 @@ function addTodo(event){
     
 }
 function marking(event){
-    if(!event.currentTarget.parentElement.classList.contains("marker")){
-        event.currentTarget.parentElement.classList.add("marker");
-        console.log(event.currentTarget.parentElement); 
+    if(!event.currentTarget.parentElement.parentElement.classList.contains("marker")){
+        event.currentTarget.parentElement.parentElement.classList.add("marker");
+        console.log(event.currentTarget.parentElement.parentElement); 
     }else{
-        event.currentTarget.parentElement.classList.remove("marker");
+        event.currentTarget.parentElement.parentElement.classList.remove("marker");
     }
     
     
@@ -184,19 +186,33 @@ function sorting2(){
     
 }
 
-
-
-// const allDelets = document.getElementsByClassName("delete");   //new pass
-
-// for (const button of allDelets) {
-//     button.addEventListener("click" , deleting );
-// }
-// const allMarks = document.getElementsByClassName("mark");   //new pass
-// for (const button of allMarks) {
-//     button.addEventListener("click" , marking );
-// }
-
-
+const icon1 =  catchElement("img1");
+const icon2 =  catchElement("img2");
+const icon3 =  catchElement("img3");
+const divIcons = catchElement("icons");
+divIcons.addEventListener("click" , choseIcon);
+function choseIcon(event){
+    switch(event.target){
+        case icon1:
+            witchIcon = "icon1";
+            icon1.classList.add("chosen");
+            icon2.classList.remove("chosen");
+            icon3.classList.remove("chosen");
+            break;
+        case icon2:
+            witchIcon = "icon2";
+            icon2.classList.add("chosen");
+            icon1.classList.remove("chosen");
+            icon3.classList.remove("chosen");
+            break;
+        case icon3:
+            witchIcon = "icon3";
+            icon3.classList.add("chosen");
+            icon1.classList.remove("chosen");
+            icon2.classList.remove("chosen");
+            break;
+    }
+}
 
 
 

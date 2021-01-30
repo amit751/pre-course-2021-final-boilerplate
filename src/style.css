@@ -27,6 +27,43 @@ ul*{
     text-align: center;
 
 }
+.icon1{
+    list-style: url('https://image.flaticon.com/icons/png/128/86/86576.png');
+    
+}
+.icon2{
+    list-style: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbqSn0ZMCQm0g9WFClxUmVXXK4nafbo34W6g&usqp=CAU');
+    
+}
+
+
+
+.icon3{
+    list-style: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSuYwr93mHJI0r-Gpa72j14ZvxALQaTvvgt3g&usqp=CAU");
+    
+}
+
+
+.chosen{
+    border: springgreen solid;
+    padding: 2px;
+}
+
+
+img{
+margin: 10px;
+}
+
+
+
+
+
+
+
+
+
+
+
 /* 
 #todo-created-at{
     display: inline-block
