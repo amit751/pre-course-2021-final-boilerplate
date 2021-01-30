@@ -36,96 +36,20 @@ ul*{
     
 }
 
-
-
 .icon3{
     list-style: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSuYwr93mHJI0r-Gpa72j14ZvxALQaTvvgt3g&usqp=CAU");
     
 }
-
-
 .chosen{
     border: springgreen solid;
     padding: 2px;
     background-color: steelblue;
 }
-
-
 img{
 margin: 10px;
+width: 100px;
 }
-
-
-
-
-
-
-
-
-
-
-
-/* 
-#todo-created-at{
-    display: inline-block
-
-}
-#todo-text{
-    display: inline-block
-}
-#todo-priority{
-    display: inline-block */
- }
 #todo-container *{
     display: block;
     margin-top: 20px;
 }
-/* const listItem = newElement( "li" , "list-item" , "" , list); */
-/* const todoContainer = newElement( "div" , "todo-container" , "" , listItem);
-const createdAt = newElement( "div" , "todo-created-at" , obj.date , todoContainer);
-const todoText = newElement( "div" , "todo-text" , obj.text , todoContainer);
-const priority = newElement( "div" , "todo-priority" , obj.priority , todoContainer);
-const deletButton = newElement( "button" , "delete" , "delete" ,todoContainer); //new button-pass the test
-const markButton = newElement( "button" , "mark" , "mark" ,todoContainer); //new button-pass the test
-deletButton.addEventListener("click" , deleting ); //n
-markButton.addEventListener("click" , marking ); //n
-} */ */
-
-
-
-
-/* const listItem = newElement( "li" , "list-item" , "" , list);//+
-const todoContainer = newElement( "div" , "todo-container" , "" , listItem);
-const createdAt = newElement( "div" , "todo-created-at" , obj.date , todoContainer);
-const todoText = newElement( "div" , "todo-text" , obj.text , todoContainer);
-const priority = newElement( "div" , "todo-priority" , obj.priority , todoContainer);
-const deletButton = newElement( "button" , "delete" , "delete" ,todoContainer); //new button-pass the test
-const markButton = newElement( "button" , "mark" , "mark" ,todoContainer); //new button-pass the test
-deletButton.addEventListener("click" , deleting ); //n
-markButton.addEventListener("click" , marking ); //n
-
-
-
-
-const listItem = newElement( "li" , "list-item" , "" , list);
-const todoContainer = newElement( "div" , "todo-container" , "" ,  listItem);
-const createdAt = newElement( "div" , "todo-created-at" , new Date().toLocaleString().replace('.', '-').replace('.', '-').replace(',', ' ') , todoContainer);
-const todoText = newElement( "div" , "todo-text" , input.value , todoContainer);
-const priority = newElement( "div" , "todo-priority" , priorityNum.value , todoContainer); //num
-const deletButton = newElement( "button" , "delete" , "delete" ,todoContainer); //new button-pass the test
-const markButton = newElement( "button" , "mark" , "mark" ,todoContainer); //new button-pass the test
-deletButton.addEventListener("click" , deleting ); //n
-markButton.addEventListener("click" , marking ); //n
-console.log(todoContainer.innerHTML);
-
-
-
-                const listItem = newElement( "li" , "list-item" , "" , list);
-                const todoContainer = newElement( "div" , "todo-container" , "" , listItem);
-                const createdAt = newElement( "div" , "todo-created-at" , obj.date , todoContainer);
-                const todoText = newElement( "div" , "todo-text" , obj.text , todoContainer);
-                const priority = newElement( "div" , "todo-priority" , obj.priority , todoContainer);
-                const deletButton = newElement( "button" , "delete" , "delete" ,todoContainer); //new button-pass the test
-                const markButton = newElement( "button" , "mark" , "mark" ,todoContainer); //new button-pass the test
-                deletButton.addEventListener("click" , deleting ); //n
-                markButton.addEventListener("click" , marking ); //n */
