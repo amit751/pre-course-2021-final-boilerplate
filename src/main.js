@@ -30,11 +30,12 @@ window.onload = function(){
             if(obj.status!== "deleted"){
                 const listItem = newElement( "li" , "list-item" , "" , list);
                 const todoContainer = newElement( "div" , "todo-container" , "" , listItem);
-                const createdAt = newElement( "div" , "todo-created-at" , obj.date , todoContainer);
-                const todoText = newElement( "div" , "todo-text" , obj.text , todoContainer);
-                const priority = newElement( "div" , "todo-priority" , obj.priority , todoContainer);
-                const deletButton = newElement( "button" , "delete" , "delete" ,todoContainer); //new button-pass the test
-                const markButton = newElement( "button" , "mark" , "mark" ,todoContainer); //new button-pass the test
+                const createdAt = newElement( "span" , "todo-created-at" , obj.date , todoContainer);//span
+                const todoText = newElement( "span" , "todo-text" , obj.text , todoContainer);//span
+                const priority = newElement( "span" , "todo-priority" , obj.priority , todoContainer);//span
+                const buttonsContainer = newElement( "span" , "buttons-container" , "" ,todoContainer );
+                const deletButton = newElement( "button" , "delete" , "delete" ,buttonsContainer); //new button-pass the test
+                const markButton = newElement( "button" , "mark" , "mark" ,buttonsContainer); //new button-pass the test
                 deletButton.addEventListener("click" , deleting ); //n
                 markButton.addEventListener("click" , marking ); //n
             }
@@ -54,7 +55,7 @@ function deleting(event){  //new pass
         console.log(obj);
         console.log(obj.innerHTML);
         console.log(event.currentTarget.parentElement.innerHTML);
-       if(obj.containerInnerHtml===event.currentTarget.parentElement.innerHTML){
+       if(obj.containerInnerHtml===event.currentTarget.parentElement.parentElement.innerHTML){
            obj.status="deleted";
        } 
     }
@@ -91,11 +92,12 @@ if(JSON.parse(localStorage.getItem("todosObjects"))){
 function addTodo(event){
     const listItem = newElement( "li" , "list-item" , "" , list);
     const todoContainer = newElement( "div" , "todo-container" , "" ,  listItem);
-    const createdAt = newElement( "div" , "todo-created-at" , new Date().toLocaleString().replace('.', '-').replace('.', '-').replace(',', ' ') , todoContainer);
-    const todoText = newElement( "div" , "todo-text" , input.value , todoContainer);
-    const priority = newElement( "div" , "todo-priority" , priorityNum.value , todoContainer); //num
-    const deletButton = newElement( "button" , "delete" , "delete" ,todoContainer); //new button-pass the test
-    const markButton = newElement( "button" , "mark" , "mark" ,todoContainer); //new button-pass the test
+    const createdAt = newElement( "span" , "todo-created-at" , new Date().toLocaleString().replace('.', '-').replace('.', '-').replace(',', ' ') , todoContainer);
+    const todoText = newElement( "span" , "todo-text" , input.value , todoContainer);
+    const priority = newElement( "span" , "todo-priority" , priorityNum.value , todoContainer); //num
+    const buttonsContainer = newElement( "span" , "buttons-container" , "" ,todoContainer );
+    const deletButton = newElement( "button" , "delete" , "delete" ,buttonsContainer); //new button-pass the test
+    const markButton = newElement( "button" , "mark" , "mark" ,buttonsContainer); //new button-pass the test
     deletButton.addEventListener("click" , deleting ); //n
     markButton.addEventListener("click" , marking ); //n
     console.log(todoContainer.innerHTML);
@@ -168,11 +170,12 @@ function sorting2(){
         if(obj.status!== "deleted"){
             const listItem = newElement( "li" , "list-item" , "" , list);
             const todoContainer = newElement( "div" , "todo-container" , "" , listItem);
-            const createdAt = newElement( "div" , "todo-created-at" , obj.date , todoContainer);
-            const todoText = newElement( "div" , "todo-text" , obj.text , todoContainer);
-            const priority = newElement( "div" , "todo-priority" , obj.priority , todoContainer);
-            const deletButton = newElement( "button" , "delete" , "delete" ,todoContainer); //new button-pass the test
-            const markButton = newElement( "button" , "mark" , "mark" ,todoContainer); //new button-pass the test
+            const createdAt = newElement( "span" , "todo-created-at" , obj.date , todoContainer);
+            const todoText = newElement( "span" , "todo-text" , obj.text , todoContainer);
+            const priority = newElement( "span" , "todo-priority" , obj.priority , todoContainer);
+            const buttonsContainer = newElement( "span" , "buttons-container" , "" ,todoContainer );
+            const deletButton = newElement( "button" , "delete" , "delete" ,buttonsContainer); //new button-pass the test
+            const markButton = newElement( "button" , "mark" , "mark" ,buttonsContainer); //new button-pass the test
             deletButton.addEventListener("click" , deleting ); //n
             markButton.addEventListener("click" , marking ); //n
         }
