@@ -38,15 +38,7 @@ window.onload = function(){
             
 
         }
-        // const allDelets = document.getElementsByClassName("delete");   //new pass
-        // const allMarks = document.getElementsByClassName("mark");   //new pass
-        // for (const button of allDelets) {
-        //     button.addEventListener("click" , deleting );
-        // }
-        // const allMarks = document.getElementsByClassName("mark");   //new pass
-        // for (const button of allMarks) {
-        //     button.addEventListener("click" , marking );
-        // }
+       
         
     }
 }
@@ -130,8 +122,15 @@ function addTodo(event){
     
     
 }
-function marking(){
-    console.log(1);
+function marking(event){
+    if(!event.currentTarget.parentElement.classList.contains("marker")){
+        event.currentTarget.parentElement.classList.add("marker");
+        console.log(event.currentTarget.parentElement); 
+    }else{
+        event.currentTarget.parentElement.classList.remove("marker");
+    }
+    
+    
 }
 
 
