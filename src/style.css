@@ -1,4 +1,112 @@
+.icon1{
+    list-style: url("./img1.jpg");
+    
+}
+.icon2{
+    list-style: url("./img2.jpg");
+    
+}
 
+.icon3{
+    list-style: url("./img3.jpg");
+    
+}
+.chosen{
+    border: springgreen solid;
+    padding: 2px;
+    background-color: steelblue;
+}
+body{
+    margin-right: 40%;
+    margin-left: 30%;
+    margin-top: 150px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    
+}
+.marker{
+    background-color: yellow;
+    
+}
+.todo-container{
+    /* position: relative; */
+    width: 30vw;
+    
+}
+.buttons-container{
+    position: absolute;
+    right: 30%;
+}
+button{
+    margin: 2px;
+    background-color: hsl(350, 83%, 53%); /* Green */
+    border: none;
+    color: white ;
+    border-radius: 3px;
+    font-size: larger;
+    text-align: center;
+    text-decoration: none;
+    
+   
+    
+}
+li{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+#sort-button{
+    position: absolute;
+    margin-left: 300px;
+    color: snow;
+}
+.todo-priority{
+    margin:8px;
+
+}
+.todo-text{
+    font-size: larger;
+    margin:8px;
+}
+.todo-created-at{
+    margin:8px;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-weight: normal;
+}
+#list{
+    left: 20%;
+}
+p{
+    font-size:xx-large;
+}
+#quanter-text{
+    
+    font-size: x-large;
+}
+#counter{
+    font-size: x-large;
+    font-weight: bold;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* 
  #control-section{
     
 }
@@ -28,16 +136,16 @@ ul*{
 
 }
 .icon1{
-    list-style: url('https://image.flaticon.com/icons/png/128/86/86576.png');
+    list-style: url("./img1.jpg");
     
 }
 .icon2{
-    list-style: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbqSn0ZMCQm0g9WFClxUmVXXK4nafbo34W6g&usqp=CAU');
+    list-style: url("./img2.jpg");
     
 }
 
 .icon3{
-    list-style: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSuYwr93mHJI0r-Gpa72j14ZvxALQaTvvgt3g&usqp=CAU");
+    list-style: url("./img3.jpg");
     
 }
 .chosen{
@@ -47,9 +155,23 @@ ul*{
 }
 img{
 margin: 10px;
-width: 100px;
+width: 30px;
 }
-#todo-container *{
+#todo-container {
     display: block;
     margin-top: 20px;
+    width: 100px;
+    height: 50px;
+    position: relative;
+
 }
+
+
+
+.buttons-container{
+    position: relative;
+    
+}
+.delete{
+position: absolute;
+/* right: 0px; */
