@@ -25,15 +25,39 @@ window.onload = function(){
         const previusObj = JSON.parse(localStorage.getItem("todosObjects"));
         for (const obj of previusObj){
             
-
             const todoContainer = newElement( "div" , "todo-container" , "" , viewSection);
             const createdAt = newElement( "div" , "todo-created-at" , obj.date , todoContainer);
             const todoText = newElement( "div" , "todo-text" , obj.text , todoContainer);
             const priority = newElement( "div" , "todo-priority" , obj.priority , todoContainer);
+            const deletButton = newElement( "button" , "delete" , "delete" ,todoContainer); //new button-pass the test
+            const markButton = newElement( "button" , "mark" , "mark" ,todoContainer); //new button-pass the test
+           
+            
+
         }
         
     }
 }
+
+const allDelets = document.getElementsByClassName("delete");
+for (const button of allDelets) {
+    button.addEventListener("click" , deleting );
+}
+const allMarks = document.getElementsByClassName("mark");
+for (const button of allMarks) {
+    button.addEventListener("click" , marking );
+}
+
+// function deleting(event){
+    
+    
+//     event.currentTarget.parentElement.remove();
+//     --qount;
+//     qounter.innerText=qount;
+//     localStorage.setItem("qounter" ,qount);
+
+
+// }
 
 
 const addButton = catchElement("add-button");
