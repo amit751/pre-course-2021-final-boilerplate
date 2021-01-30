@@ -60,7 +60,7 @@ function deleting(event){  //new pass
        } 
     }
     localStorage.setItem("todosObjects" , JSON.stringify(todosObjects));
-    event.currentTarget.parentElement.parentElement.remove();
+    event.currentTarget.parentElement.parentElement.parentElement.remove();
     
     --qount;
     qounter.innerText=qount;
