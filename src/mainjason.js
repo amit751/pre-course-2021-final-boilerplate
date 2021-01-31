@@ -39,9 +39,10 @@ function catchElement(id){
 }
 
 window.onload = function(){
-    if(JSON.parse(localStorage.getItem("todosObjects"))){
-        const previusObj = JSON.parse(localStorage.getItem("todosObjects"));
-        creatingaLiWithObjData(previusObj);
+    const jasonBin = getdata();
+    if(jasonBin["my-todo"]){
+        const previusObjs = jasonBin["my-todo"];
+        creatingaLiWithObjData(previusObjs);
         
     }
 }
