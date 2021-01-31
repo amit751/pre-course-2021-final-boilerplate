@@ -18,10 +18,8 @@ window.onload = function(){
 
                 const listItem = newElement( "li" , "list-item" , "" , list);
                 listItem.innerHTML = obj.liHtml;
+                listItem.classList.add(obj.liClass);
                 addEventToButtons(); 
-                // const todoContainer = newElement( "div" , "todo-container" , "" , listItem);
-                // readingContentFromObj(obj ,todoContainer,listItem);
-                // addingButtons(todoContainer);
             }
         }
     }
@@ -29,18 +27,12 @@ window.onload = function(){
 
 function deleting(event){  
     for (const obj of todosObjects) {
-        console.log(obj);
-        console.log(obj.innerHTML);
-        console.log(event.currentTarget.parentElement.innerHTML);
        if(event.currentTarget.parentElement.parentElement.classList.contains(obj.id.toString())){
            obj.status="deleted";
        }
-       console.log(obj); 
     }
-    console.log(todosObjects);
     localStorage.setItem("todosObjects" , JSON.stringify(todosObjects));
     event.currentTarget.parentElement.parentElement.parentElement.remove();
-    
     --qount;
     qounter.innerText=qount;
     localStorage.setItem("qounter" ,qount);
@@ -91,8 +83,6 @@ function marking(event){
     }else{
         event.currentTarget.parentElement.parentElement.classList.remove("marker");
     }
-    
-    
 }
 function sort(arr){
     const newArr=[];
@@ -104,7 +94,6 @@ function sort(arr){
             } 
         } 
     }
-    
     return newArr;
 }
 function sorting2(){
@@ -114,10 +103,8 @@ function sorting2(){
         if(obj.status!== "deleted"){
             const listItem = newElement( "li" , "list-item" , "" , list);
             listItem.innerHTML=obj.liHtml;
-            addEventToButtons();  
-            // const todoContainer = newElement( "div" , "todo-container" , "" , listItem);
-            // addingButtons(todoContainer);
-            // readingContentFromObj(obj, todoContainer , listItem);
+            listItem.classList.add(obj.liClass);
+            addEventToButtons();
         }
     }
 }
@@ -154,12 +141,12 @@ function addingButtons(todoContainer){
     markButton.addEventListener("click" , marking );    
 }
 
-function readingContentFromObj(obj, todoContainer,listItem){
-    const createdAt = newElement( "span" , "todo-created-at" , obj.date , todoContainer);
-    const todoText = newElement( "span" , "todo-text" , obj.text , todoContainer);
-    const priority = newElement( "span" , "todo-priority" , obj.priority , todoContainer);
-    listItem.classList.add(obj.liClass);
-} 
+// function readingContentFromObj(obj, todoContainer,listItem){
+//     const createdAt = newElement( "span" , "todo-created-at" , obj.date , todoContainer);
+//     const todoText = newElement( "span" , "todo-text" , obj.text , todoContainer);
+//     const priority = newElement( "span" , "todo-priority" , obj.priority , todoContainer);
+//     listItem.classList.add(obj.liClass);
+// } 
 
 
 
@@ -173,17 +160,14 @@ let viewSection = catchElement("view-section");
 let priorityNum = catchElement("priority-selector");  
 const sortButton = catchElement("sort-button");
 const addButton = catchElement("add-button");
-//////////////adiing event lisners
 addButton.addEventListener("click", addTodo );
 sortButton.addEventListener("click",sorting2);
 ////////////////////////
 
 ///////////////asiigning to varibales
-
 let identfy=0;
 if(JSON.parse(localStorage.getItem("identfy"))){
     identfy=  JSON.parse(localStorage.getItem("identfy"));   
-// }else{ identfy=0;
 }
 let qount =Number(localStorage.getItem("qounter"));
 qounter.innerText=qount;
