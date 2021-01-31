@@ -12,24 +12,24 @@ async function setPersistent(key, data) {
   return true;
 }
 
-const data = "{todosObjects}";
+// const data = "{todosObjects}";
 
 
 
 
 //mytry-working
 
-async function postdata(){
-  const response =await fetch("https://api.jsonbin.io/v3/b/601585fab41a937c6d54546e" ,{ 
-  method: 'PUT' ,
-  headers: {
-    'Content-Type': 'application/json',
-  },
-  body: JSON.stringify(data),
-})
-  const jason = await response.json();
-  console.log( jason);
-}
+// async function postdata(){
+//   const response =await fetch("https://api.jsonbin.io/v3/b/601585fab41a937c6d54546e" ,{ 
+//   method: 'PUT' ,
+//   headers: {
+//     'Content-Type': 'application/json',
+//   },
+//   body: JSON.stringify(data),
+// })
+//   const jason = await response.json();
+//   console.log( jason);
+// }
 // postdata();
 
 
@@ -73,11 +73,11 @@ async function postdata(){
 
 
 
-async function getdata(){
-const response = await fetch("https://api.jsonbin.io/v3/b/601585fab41a937c6d54546e/latest" , {method:"GET"});
-const myjason = await response.json();
-console.log(myjason.record);
-return myjason.record;
-};
+// async function getdata(){
+// const response = await fetch("https://api.jsonbin.io/v3/b/601585fab41a937c6d54546e/latest" , {method:"GET"});
+// const myjason = await response.json();
+// console.log(myjason.record);
+// return myjason.record;
+// };
 
 // getdata();
