@@ -17,9 +17,12 @@ window.onload = function(){
             if(obj.status!== "deleted"){
 
                 const listItem = newElement( "li" , "list-item" , "" , list);
-                const todoContainer = newElement( "div" , "todo-container" , "" , listItem);
-                readingContentFromObj(obj ,todoContainer,listItem);
-                addingButtons(todoContainer);
+                listItem.innerHTML = obj.liHtml;
+                deletButton.addEventListener("click" , deleting ); 
+                markButton.addEventListener("click" , marking );   
+                // const todoContainer = newElement( "div" , "todo-container" , "" , listItem);
+                // readingContentFromObj(obj ,todoContainer,listItem);
+                // addingButtons(todoContainer);
             }
         }
     }
@@ -62,7 +65,9 @@ function addTodo(event){
     todoObj.date =  new Date().toLocaleString().replace('.', '-').replace('.', '-').replace(',', ' ') ;
     todoObj.containerInnerHtml = todoContainer.innerHTML;
     todoObj.liClass = witchIcon;
+    todoObj.liHtml = listItem.innerHTML;
     todosObjects.push(todoObj);
+
 
     let todosObjJason=JSON.stringify(todosObjects);
     localStorage.clear();
@@ -109,9 +114,12 @@ function sorting2(){
     for (const obj of arrey) {
         if(obj.status!== "deleted"){
             const listItem = newElement( "li" , "list-item" , "" , list);
-            const todoContainer = newElement( "div" , "todo-container" , "" , listItem);
-            addingButtons(todoContainer);
-            readingContentFromObj(obj, todoContainer , listItem);
+            listItem.innerHTML=obj.liHtml;
+            deletButton.addEventListener("click" , deleting ); 
+            markButton.addEventListener("click" , marking );   
+            // const todoContainer = newElement( "div" , "todo-container" , "" , listItem);
+            // addingButtons(todoContainer);
+            // readingContentFromObj(obj, todoContainer , listItem);
         }
     }
 }
@@ -196,3 +204,10 @@ const icon3 =  catchElement("img3");
 const divIcons = catchElement("icons");
 divIcons.addEventListener("click" , choseIcon);
 ////////////////
+
+
+
+
+
+
+console.log(document.querySelectorAll("mark" , "delete"));
