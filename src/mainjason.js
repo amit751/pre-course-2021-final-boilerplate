@@ -2,7 +2,8 @@
 
 
 
-async function postdata(data){
+async function postdata(arrey){
+    const data = {"my-todo": arrey};
     const response =await fetch("https://api.jsonbin.io/v3/b/601585fab41a937c6d54546e" ,{ 
     method: 'PUT' ,
     headers: {
@@ -168,19 +169,22 @@ sortButton.addEventListener("click",sorting2);
 
 ///////////////asiigning to varibales
 let identfy=0;
-if(JSON.parse(localStorage.getItem("identfy"))){
-    identfy=  JSON.parse(localStorage.getItem("identfy"));   
+let jasonBin = getdata();
+if(jasonBin.identfy){               
+    identfy=jasonBin.identfy;
 }
-let qount =Number(localStorage.getItem("qounter"));
+// if(JSON.parse(localStorage.getItem("identfy"))){                       
+//     identfy=  JSON.parse(localStorage.getItem("identfy"));   
+// }
+let qount =Number(jasonBin.qounter);
 qounter.innerText=qount;
 let todosObjects=[];
 let witchIcon;
-if(JSON.parse(localStorage.getItem("todosObjects"))){
-     todosObjects=  JSON.parse(localStorage.getItem("todosObjects"));   
+if(JSON.parse(jasonBin["my-todo"])){
+    todosObjects= jasonBin["my-todo"];   
 }else{ todosObjects=[];
 }
-postdata(todosObjects);///////////////////
-////////////////////////
+
 
 /////code for icons
 const icon1 =  catchElement("img1");
