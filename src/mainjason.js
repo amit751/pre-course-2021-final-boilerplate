@@ -2,8 +2,13 @@
 
 
 
-async function postdata(arrey){
-    const data = {"my-todo": arrey};
+async function postdata(arrey, qounter , identfy){
+    const data ={
+        "my-todo": arrey ,
+        "qounter": qounter ,
+        "identfy":identfy
+    };
+    
     const response =await fetch("https://api.jsonbin.io/v3/b/601585fab41a937c6d54546e" ,{ 
     method: 'PUT' ,
     headers: {
@@ -58,6 +63,7 @@ function deleting(event){
     --qount;
     qounter.innerText=qount;
     localStorage.setItem("qounter" ,qount);
+    postdata(todosObjects, qount);
 }
 
 function addTodo(event){
@@ -81,20 +87,19 @@ function addTodo(event){
     todoObj.liHtml = listItem.innerHTML;
     todosObjects.push(todoObj);
 
-
+//post
     let todosObjJason=JSON.stringify(todosObjects);
     localStorage.clear();
     localStorage.setItem("todosObjects" , todosObjJason);
-    
-    
-   
+    //postdata(todosObjects);
     input.value="";
     qount++;
     qounter.innerText=qount;
+    ++identfy;
     localStorage.setItem("qounter" ,qount);
     localStorage.setItem("identfy" ,identfy);
-    ++identfy;
-    localStorage.setItem("identfy" ,identfy);
+    postdata( todosObjects , qount , identfy);
+   
     
     
 }
@@ -181,7 +186,7 @@ let qount =Number(jasonBin.qounter);
 qounter.innerText=qount;
 let todosObjects=[];
 let witchIcon;
-if(JSON.parse(jasonBin["my-todo"])){
+if(jasonBin["my-todo"]){
     todosObjects= jasonBin["my-todo"];   
 }else{ todosObjects=[];
 }
