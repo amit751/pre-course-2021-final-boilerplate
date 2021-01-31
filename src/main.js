@@ -18,8 +18,7 @@ window.onload = function(){
 
                 const listItem = newElement( "li" , "list-item" , "" , list);
                 listItem.innerHTML = obj.liHtml;
-                deletButton.addEventListener("click" , deleting ); 
-                markButton.addEventListener("click" , marking );   
+                addEventToButtons(); 
                 // const todoContainer = newElement( "div" , "todo-container" , "" , listItem);
                 // readingContentFromObj(obj ,todoContainer,listItem);
                 // addingButtons(todoContainer);
@@ -115,8 +114,7 @@ function sorting2(){
         if(obj.status!== "deleted"){
             const listItem = newElement( "li" , "list-item" , "" , list);
             listItem.innerHTML=obj.liHtml;
-            deletButton.addEventListener("click" , deleting ); 
-            markButton.addEventListener("click" , marking );   
+            addEventToButtons();  
             // const todoContainer = newElement( "div" , "todo-container" , "" , listItem);
             // addingButtons(todoContainer);
             // readingContentFromObj(obj, todoContainer , listItem);
@@ -208,6 +206,14 @@ divIcons.addEventListener("click" , choseIcon);
 
 
 
+function addEventToButtons(){
 
-
-console.log(document.querySelectorAll("mark" , "delete"));
+    let allDelete = document.getElementsByClassName( "delete");
+    for (const button of allDelete) {
+        button.addEventListener("click" ,deleting );
+    }
+    let allMark = document.getElementsByClassName( "mark");
+    for (const button of allMark) {
+        button.addEventListener("click" ,marking );
+    }
+}
