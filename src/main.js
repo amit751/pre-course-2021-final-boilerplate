@@ -13,15 +13,15 @@ function catchElement(id){
 window.onload = function(){
     if(JSON.parse(localStorage.getItem("todosObjects"))){
         const previusObj = JSON.parse(localStorage.getItem("todosObjects"));
-        for (const obj of previusObj){
-            if(obj.status!== "deleted"){
-
-                const listItem = newElement( "li" , "list-item" , "" , list);
-                listItem.innerHTML = obj.liHtml;
-                listItem.classList.add(obj.liClass);
-                addEventToButtons(); 
-            }
-        }
+        creatingaLiWithObjData(previusObj);
+        // for (const obj of previusObj){
+        //     if(obj.status!== "deleted"){
+        //         const listItem = newElement( "li" , "list-item" , "" , list);
+        //         listItem.innerHTML = obj.liHtml;
+        //         listItem.classList.add(obj.liClass);
+        //         addEventToButtons(); 
+        //     }
+        // }
     }
 }
 
@@ -54,7 +54,7 @@ function addTodo(event){
     todoObj.text =  input.value;
     todoObj.priority = priorityNum.value; 
     todoObj.date =  new Date().toLocaleString().replace('.', '-').replace('.', '-').replace(',', ' ') ;
-    todoObj.containerInnerHtml = todoContainer.innerHTML;
+    // todoObj.containerInnerHtml = todoContainer.innerHTML;
     todoObj.liClass = witchIcon;
     todoObj.liHtml = listItem.innerHTML;
     todosObjects.push(todoObj);
@@ -78,8 +78,7 @@ function addTodo(event){
 }
 function marking(event){
     if(!event.currentTarget.parentElement.parentElement.classList.contains("marker")){
-        event.currentTarget.parentElement.parentElement.classList.add("marker");
-        console.log(event.currentTarget.parentElement.parentElement); 
+        event.currentTarget.parentElement.parentElement.classList.add("marker"); 
     }else{
         event.currentTarget.parentElement.parentElement.classList.remove("marker");
     }
@@ -99,14 +98,15 @@ function sort(arr){
 function sorting2(){
     const arrey = sort(todosObjects);
     list.innerHTML="";
-    for (const obj of arrey) {
-        if(obj.status!== "deleted"){
-            const listItem = newElement( "li" , "list-item" , "" , list);
-            listItem.innerHTML=obj.liHtml;
-            listItem.classList.add(obj.liClass);
-            addEventToButtons();
-        }
-    }
+    creatingaLiWithObjData(arrey);
+    // for (const obj of arrey) {
+    //     if(obj.status!== "deleted"){
+    //         const listItem = newElement( "li" , "list-item" , "" , list);
+    //         listItem.innerHTML=obj.liHtml;
+    //         listItem.classList.add(obj.liClass);
+    //         addEventToButtons();
+    //     }
+    // }
 }
 
 function choseIcon(event){
@@ -199,5 +199,20 @@ function addEventToButtons(){
     let allMark = document.getElementsByClassName( "mark");
     for (const button of allMark) {
         button.addEventListener("click" ,marking );
+    }
+}
+
+
+
+
+
+function creatingaLiWithObjData(arrey){
+    for (const obj of arrey) {
+        if(obj.status!== "deleted"){
+            const listItem = newElement( "li" , "list-item" , "" , list);
+            listItem.innerHTML=obj.liHtml;
+            listItem.classList.add(obj.liClass);
+            addEventToButtons();
+        }
     }
 }
