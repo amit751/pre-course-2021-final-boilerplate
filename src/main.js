@@ -30,10 +30,12 @@ function deleting(event){
         console.log(obj);
         console.log(obj.innerHTML);
         console.log(event.currentTarget.parentElement.innerHTML);
-       if(obj.containerInnerHtml===event.currentTarget.parentElement.parentElement.innerHTML){
+       if(event.currentTarget.parentElement.parentElement.classList.contains(obj.id.toString())){
            obj.status="deleted";
-       } 
+       }
+       console.log(obj); 
     }
+    console.log(todosObjects);
     localStorage.setItem("todosObjects" , JSON.stringify(todosObjects));
     event.currentTarget.parentElement.parentElement.parentElement.remove();
     
@@ -45,24 +47,26 @@ function deleting(event){
 function addTodo(event){
 
     const listItem = newElement( "li" , "list-item" , "" , list);
-    listItem.classList.add(witchIcon);
-    const todoContainer = newElement( "div" , "todo-container" , "" ,  listItem);
+    listItem.classList.add(witchIcon);///////can remove this line and change above
+    const todoContainer = newElement( "div" , "todo-container"  , "" ,  listItem);
+    todoContainer.classList.add(identfy);
     const createdAt = newElement( "span" , "todo-created-at" , new Date().toLocaleString().replace('.', '-').replace('.', '-').replace(',', ' ') , todoContainer);
     const todoText = newElement( "span" , "todo-text" , input.value , todoContainer);
-    const priority = newElement( "span" , "todo-priority" , priorityNum.value , todoContainer); //num
+    const priority = newElement( "span" , "todo-priority" , priorityNum.value , todoContainer); 
     addingButtons(todoContainer);
 
-    const todoObj ={};
+    let todoObj ={};
+    todoObj.id = identfy;
     todoObj.text =  input.value;
-    todoObj.priority = priorityNum.value; //num
+    todoObj.priority = priorityNum.value; 
     todoObj.date =  new Date().toLocaleString().replace('.', '-').replace('.', '-').replace(',', ' ') ;
     todoObj.containerInnerHtml = todoContainer.innerHTML;
     todoObj.liClass = witchIcon;
     todosObjects.push(todoObj);
 
-    let todosObjsJason=JSON.stringify(todosObjects);
+    let todosObjJason=JSON.stringify(todosObjects);
     localStorage.clear();
-    localStorage.setItem("todosObjects" , todosObjsJason);
+    localStorage.setItem("todosObjects" , todosObjJason);
     
     
    
@@ -70,7 +74,9 @@ function addTodo(event){
     qount++;
     qounter.innerText=qount;
     localStorage.setItem("qounter" ,qount);
-    
+    localStorage.setItem("identfy" ,identfy);
+    ++identfy;
+    localStorage.setItem("identfy" ,identfy);
     
     
 }
@@ -156,16 +162,23 @@ function readingContentFromObj(obj, todoContainer,listItem){
 ///main structre of html
 const list = catchElement("list");
 let qounter = catchElement("counter");
-const addButton = catchElement("add-button");
 let input = catchElement("text-input");
 let viewSection = catchElement("view-section");
 let priorityNum = catchElement("priority-selector");  
 const sortButton = catchElement("sort-button");
+const addButton = catchElement("add-button");
+//////////////adiing event lisners
 addButton.addEventListener("click", addTodo );
 sortButton.addEventListener("click",sorting2);
 ////////////////////////
 
 ///////////////asiigning to varibales
+
+let identfy=0;
+if(JSON.parse(localStorage.getItem("identfy"))){
+    identfy=  JSON.parse(localStorage.getItem("identfy"));   
+// }else{ identfy=0;
+}
 let qount =Number(localStorage.getItem("qounter"));
 qounter.innerText=qount;
 let todosObjects=[];
