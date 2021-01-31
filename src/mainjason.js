@@ -43,21 +43,53 @@ async function main(){
         return x;
     }
 
-    // window.onload = async function(){
-    //     const jasonBin = await getdata();
-    //     if(jasonBin["my-todo"]){
-    //         const previusObjs = jasonBin["my-todo"];
-    //         creatingaLiWithObjData(previusObjs);
-            
-    //     }
+
+    jasonBin = await getdata();
+    console.log(jasonBin);
+    let todosObjects = jasonBin["my-todo"] !== null ? jasonBin["my-todo"] : [] ;
+    let identfy = jasonBin.identfy !== null ? jasonBin.identfy : 0 ;
+    let qount = jasonBin.qounter !== null ?  Number(jasonBin.qounter) : 0 ;
+
+    // if(JSON.parse(localStorage.getItem("identfy"))){                       
+    //     identfy=  JSON.parse(localStorage.getItem("identfy"));   
     // }
-    window.onload = function(){
-        if(JSON.parse(localStorage.getItem("todosObjects"))){
-            const previusObj = JSON.parse(localStorage.getItem("todosObjects"));
-            creatingaLiWithObjData(previusObj);
-           
+    let qount;
+    if(jasonBin.qounter){
+        qount = Number(jasonBin.qounter);
+    }else{
+        qount=0;
+    }
+    qounter.innerText=qount;
+    let todosObjects=[];
+    let witchIcon="default";
+    if(jasonBin["my-todo"]){
+        todosObjects= jasonBin["my-todo"];   
+    }else{ todosObjects=[];
+    }
+
+
+
+
+
+
+
+
+
+    window.onload = async function(){
+        const jasonBin = await getdata();
+        if(jasonBin["my-todo"]){
+            creatingaLiWithObjData(jasonBin["my-todo"]);
+            todosObjects=jasonBin["my-todo"];
+            
         }
     }
+    // window.onload = function(){
+    //     if(JSON.parse(localStorage.getItem("todosObjects"))){
+    //         const previusObj = JSON.parse(localStorage.getItem("todosObjects"));
+    //         creatingaLiWithObjData(previusObj);
+           
+    //     }
+    // }
 
     function deleting(event){  
         for (const obj of todosObjects) {
@@ -186,13 +218,14 @@ async function main(){
     ////////////////////////
 
     ///////////////asiigning to varibales
-    let identfy=0;
+   
 
     // let jasonbin = async function (){
     //     return await getdata();
     // }
 
-    let jasonBin = await getdata();
+    // let jasonBin = await getdata();
+    let identfy=0;
 
     console.log(jasonBin);
     if(jasonBin.identfy){               
