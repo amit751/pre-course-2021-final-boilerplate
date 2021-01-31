@@ -79,9 +79,11 @@ async function main(){
         listItem.classList.add(witchIcon);///////can remove this line and change above
         const todoContainer = newElement( "div" , "todo-container"  , "" ,  listItem);
         todoContainer.classList.add(identfy);
-        const createdAt = newElement( "span" , "todo-created-at" , new Date().toLocaleString().replace('.', '-').replace('.', '-').replace(',', ' ') , todoContainer);
         const todoText = newElement( "span" , "todo-text" , input.value , todoContainer);
         const priority = newElement( "span" , "todo-priority" , priorityNum.value , todoContainer); 
+        const createdAt = newElement( "span" , "todo-created-at" , new Date().toLocaleString().replace('.', '-').replace('.', '-').replace(',', ' ') , todoContainer);
+        
+       
         addingButtons(todoContainer);
 
         let todoObj ={};
@@ -155,6 +157,9 @@ async function main(){
                 icon1.classList.remove("chosen");
                 icon2.classList.remove("chosen");
                 break;
+            default:
+                witchIcon = "default";
+                break;    
         }
     }
 
@@ -204,7 +209,7 @@ async function main(){
     }
     qounter.innerText=qount;
     let todosObjects=[];
-    let witchIcon="icon1";
+    let witchIcon="default";
     if(jasonBin["my-todo"]){
         todosObjects= jasonBin["my-todo"];   
     }else{ todosObjects=[];
@@ -218,6 +223,8 @@ async function main(){
     const divIcons = catchElement("icons");
     divIcons.addEventListener("click" , choseIcon);
     ////////////////
+    
+    
 
 
     function addEventToButtons(){
