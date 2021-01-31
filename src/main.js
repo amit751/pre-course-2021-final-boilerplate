@@ -21,14 +21,9 @@ window.onload = function(){
                 readingContentFromObj(obj ,todoContainer,listItem);
                 addingButtons(todoContainer);
             }
-
-
         }
-       
-        
     }
 }
-
 
 function deleting(event){  
     for (const obj of todosObjects) {
@@ -45,31 +40,6 @@ function deleting(event){
     --qount;
     qounter.innerText=qount;
     localStorage.setItem("qounter" ,qount);
-}
-
-const list = catchElement("list");
-let qounter = catchElement("counter");
-let qount =Number(localStorage.getItem("qounter"));
-qounter.innerText=qount;
-///main structre of html
-const addButton = catchElement("add-button");
-let input = catchElement("text-input");
-let viewSection = catchElement("view-section");
-let priorityNum = catchElement("priority-selector");  
-  
-const sortButton = catchElement("sort-button");
-addButton.addEventListener("click", addTodo );
-sortButton.addEventListener("click",sorting2);
-////////////////////////
-
-
-
-
-let todosObjects=[];
-let witchIcon;
-if(JSON.parse(localStorage.getItem("todosObjects"))){
-     todosObjects=  JSON.parse(localStorage.getItem("todosObjects"));   
-}else{ todosObjects=[];
 }
 
 function addTodo(event){
@@ -140,13 +110,6 @@ function sorting2(){
     }
 }
 
-
-
-const icon1 =  catchElement("img1");
-const icon2 =  catchElement("img2");
-const icon3 =  catchElement("img3");
-const divIcons = catchElement("icons");
-divIcons.addEventListener("click" , choseIcon);
 function choseIcon(event){
     switch(event.target){
         case icon1:
@@ -179,11 +142,44 @@ function addingButtons(todoContainer){
     markButton.addEventListener("click" , marking );    
 }
 
-
-
 function readingContentFromObj(obj, todoContainer,listItem){
     const createdAt = newElement( "span" , "todo-created-at" , obj.date , todoContainer);
     const todoText = newElement( "span" , "todo-text" , obj.text , todoContainer);
     const priority = newElement( "span" , "todo-priority" , obj.priority , todoContainer);
     listItem.classList.add(obj.liClass);
 } 
+
+
+
+
+
+///main structre of html
+const list = catchElement("list");
+let qounter = catchElement("counter");
+const addButton = catchElement("add-button");
+let input = catchElement("text-input");
+let viewSection = catchElement("view-section");
+let priorityNum = catchElement("priority-selector");  
+const sortButton = catchElement("sort-button");
+addButton.addEventListener("click", addTodo );
+sortButton.addEventListener("click",sorting2);
+////////////////////////
+
+///////////////asiigning to varibales
+let qount =Number(localStorage.getItem("qounter"));
+qounter.innerText=qount;
+let todosObjects=[];
+let witchIcon;
+if(JSON.parse(localStorage.getItem("todosObjects"))){
+     todosObjects=  JSON.parse(localStorage.getItem("todosObjects"));   
+}else{ todosObjects=[];
+}
+////////////////////////
+
+/////code for icons
+const icon1 =  catchElement("img1");
+const icon2 =  catchElement("img2");
+const icon3 =  catchElement("img3");
+const divIcons = catchElement("icons");
+divIcons.addEventListener("click" , choseIcon);
+////////////////
