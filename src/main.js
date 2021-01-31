@@ -60,7 +60,7 @@ let priorityNum = catchElement("priority-selector");
 const sortButton = catchElement("sort-button");
 addButton.addEventListener("click", addTodo );
 sortButton.addEventListener("click",sorting2);
-//////////////////////
+////////////////////////
 
 
 
