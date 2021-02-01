@@ -2,12 +2,12 @@
 
 async function main(){
 
-    async function postdata(arrey, qounter , identfy){
-        const data ={
-            "my-todo": arrey ,
-            "qounter": qounter ,
-            "identfy":identfy
-        };
+    async function postdata(data){
+        // const data ={
+        //     "my-todo": arrey ,
+        //     "qounter": qounter ,
+        //     "identfy":identfy
+        // };
         
         const response =await fetch("https://api.jsonbin.io/v3/b/601585fab41a937c6d54546e" ,{ 
         method: 'PUT' ,
@@ -29,9 +29,9 @@ async function main(){
     };
 
     window.onload = function(){ 
-        if(todosObjects!==null){
-          creatingaLiWithObjData(jasonBin[todosObjects]);
-      }
+        if(Todos["my-todo"]!==null){
+          creatingaLiWithObjData(Todos["my-todo"]);
+        }
     }
 
    
@@ -74,30 +74,19 @@ async function main(){
 
     jasonBin = await getdata();
     console.log(jasonBin); //
-    let todosObjects = jasonBin["my-todo"] !== null ? jasonBin["my-todo"] : [] ;
-    console.log(todosObjects);
+    // console.log(todosObjects);
     let identfy = jasonBin.identfy !== null ? jasonBin.identfy : 0 ;
     let qount = jasonBin.qounter !== null ?  Number(jasonBin.qounter) : 0 ;
+    let Todos = jasonBin !== null ? jasonBin : {
+        "my-todo": null ,
+        "qounter": qount ,
+        "identfy": identfy
+    }; 
     console.log(jasonBin.qounter);  //
     console.log(jasonBin.identfy);//
     let witchIcon="default";
     qounter.innerText=qount;
 
-    
-    
-
-    // window.onload = function(){ 
-    //       if(todosObjects!==null){
-    //         creatingaLiWithObjData(jasonBin[todosObjects]);
-    //     }
-    // }
-    // window.onload = function(){
-    //     if(JSON.parse(localStorage.getItem("todosObjects"))){
-    //         const previusObj = JSON.parse(localStorage.getItem("todosObjects"));
-    //         creatingaLiWithObjData(previusObj);
-           
-    //     }
-    // }
 
     function deleting(event){  
         for (const obj of todosObjects) {
