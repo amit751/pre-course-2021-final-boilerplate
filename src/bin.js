@@ -69,21 +69,20 @@ function addTodo(event){
     todoObj.liClass = witchIcon;
     todoObj.liHtml = listItem.innerHTML;
     todosObjects.push(todoObj);
-
-
-    let todosObjJason=JSON.stringify(todosObjects);
-    localStorage.clear();
-    localStorage.setItem("todosObjects" , todosObjJason);
-    
-    
-   
     input.value="";
     qount++;
     qounter.innerText=qount;
+    ++identfy;
+    
+    let todosObjJason=JSON.stringify(todosObjects);
+    localStorage.clear();
     localStorage.setItem("qounter" ,qount);
     localStorage.setItem("identfy" ,identfy);
-    ++identfy;
-    localStorage.setItem("identfy" ,identfy);
+    localStorage.setItem("todosObjects" , todosObjJason);
+    jasonBin["my-todo"] = todosObjJason;
+    jasonBin["qounter"] = qount;
+    jasonBin["identfy"] = identfy;
+    postdata(jasonBin);
     
     
 }
