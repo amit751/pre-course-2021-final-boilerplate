@@ -19,12 +19,12 @@
 body{
     margin-right: 40%;
     margin-left: 30%;
-    margin-top: 150px;
+    margin-top: 100px;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     
 }
 .marker{
-    background-color: yellow;
+    background-color: rgb(89, 0, 255);
     
 }
 .todo-container{
@@ -34,11 +34,12 @@ body{
 }
 .buttons-container{
     position: absolute;
-    right: 30%;
+    right: 10px;
 }
 button{
     margin: 2px;
-    background-color: hsl(350, 83%, 53%); /* Green */
+    background-color: hsl(350, 83%, 53%); 
+    
     border: none;
     color: white ;
     border-radius: 3px;
@@ -54,22 +55,30 @@ li{
     margin-bottom: 10px;
 }
 #sort-button{
+    width: 80px;
+    
     position: absolute;
-    margin-left: 300px;
-    color: snow;
+    margin-left: 550px;
+    color: rgb(240, 248, 248);
+    opacity: 8px;
+    
+    background-color: rgb(43, 10, 105);
+    border:white solid;
+    border-width: 1px;
+    
 }
 .todo-priority{
     margin:8px;
 
 }
 .todo-text{
+    font-weight: normal;
     font-size: larger;
     margin:8px;
 }
 .todo-created-at{
     margin:8px;
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-    font-weight: normal;
+   
 }
 #list{
     left: 20%;
@@ -86,94 +95,55 @@ p{
     font-weight: bold;
 }
 .done{
-    text-decoration: line-through  rgb(206, 8, 8) ; 
+    text-decoration: line-through  rgb(190, 2, 2) 2px ;
+     
+}
+
+.serch{
+    background-color: chartreuse;
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* 
- #control-section{
-    
-}
-#view-section{
-    
-} 
-body{
-    
-    display: block;
-    margin-left: 30%;
-    margin-right: 30%;
-    top:100px;
-}
-span{
-    margin: 3px;
-}
-
-.marker{
-    background-color: yellow;
-    align-items: center;
-}
-
-ul*{
-    display: block;
-    width: 200px;
-    text-align: center;
-
-}
-.icon1{
-    list-style: url("./img1.jpg");
-    
-}
-.icon2{
-    list-style: url("./img2.jpg");
-    
-}
-
-.icon3{
-    list-style: url("./img3.jpg");
-    
-}
-.chosen{
-    border: springgreen solid;
-    padding: 2px;
-    background-color: steelblue;
-}
-img{
-margin: 10px;
-width: 30px;
-}
-#todo-container {
-    display: block;
-    margin-top: 20px;
-    width: 100px;
-    height: 50px;
-    position: relative;
-
+#control-section{
+    width: 790px;
+    border-radius: 5px;
+    padding: 15px; 
+    background-image: url("https://cdn.pixabay.com/photo/2019/12/18/04/36/blue-4703011_960_720.jpg");
+    backdrop-filter: 8px;
+    color: white;
 }
 
 
-
-.buttons-container{
+#view-section{ 
+    /* border: black ;
+    border-radius: 20px;
+    border-style:groove; */
+    padding: 7px;
+    margin-top: 2px; 
+    backdrop-filter: 8px;
+    background-color: rgb(32, 1, 90);
+    border-radius: 5px;
+    color: white;
+    background-image: url("https://images.unsplash.com/photo-1557683304-673a23048d34?ixid=MXwxMjA3fDB8MHxzZWFyY2h8Mzd8fHB1cnB1bGUlMjBjb2xvcnxlbnwwfHwwfA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60");
+    background-size: cover;
+    background-repeat: no-repeat;
+    /* backdrop-filter: 8px; */
+    width: 804px;
+    font-weight: bolder;
     position: relative;
     
 }
-.delete{
-position: absolute;
-/* right: 0px; */
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 

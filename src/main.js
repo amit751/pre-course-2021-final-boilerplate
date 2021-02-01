@@ -45,9 +45,10 @@ function addTodo(event){
     listItem.classList.add(witchIcon);///////can remove this line and change above
     const todoContainer = newElement( "div" , "todo-container"  , "" ,  listItem);
     todoContainer.classList.add(identfy);
+    const priority = newElement( "span" , "todo-priority" , priorityNum.value , todoContainer);
     const createdAt = newElement( "span" , "todo-created-at" , new Date().toLocaleString().replace('.', '-').replace('.', '-').replace(',', ' ') , todoContainer);
     const todoText = newElement( "span" , "todo-text" , input.value , todoContainer);
-    const priority = newElement( "span" , "todo-priority" , priorityNum.value , todoContainer); 
+     
     addingButtons(todoContainer);
 
     let todoObj ={};
@@ -154,6 +155,8 @@ function addingButtons(todoContainer){
 
 
 ///main structre of html
+const serchInput=catchElement("serch-input");
+const serchButton=catchElement("serch-button");
 const list = catchElement("list");
 let qounter = catchElement("counter");
 let input = catchElement("text-input");
@@ -163,6 +166,7 @@ const sortButton = catchElement("sort-button");
 const addButton = catchElement("add-button");
 addButton.addEventListener("click", addTodo );
 sortButton.addEventListener("click",sorting2);
+// serchButton.addEventListener( "click", serching);
 ////////////////////////
 
 ///////////////asiigning to varibales
@@ -222,7 +226,7 @@ function creatingaLiWithObjData(arrey){
 
 function addEventTodoLine(){
 
-    let allTodoLine = document.getElementsByClassName( "todo-container");
+    let allTodoLine = document.getElementsByClassName( "todo-text");
     for (const line of allTodoLine) {
         line.addEventListener("click" ,done );
     }
@@ -230,10 +234,46 @@ function addEventTodoLine(){
 
 function done(event){
     if(event.target.closest("span")){
-    if(!event.currentTarget.classList.contains("done")){
-        event.currentTarget.classList.add("done");               // insted event.currentTarget.parentElement.parentElement.classList
+    if(!event.currentTarget.parentElement.classList.contains("done")){
+        event.currentTarget.parentElement.classList.add("done");               // insted event.currentTarget.parentElement.parentElement.classList
     }else{
-        event.currentTarget.classList.remove("done");
+        event.currentTarget.parentElement.classList.remove("done");
     }
 }
 }
+
+// function serching(){
+//     let x;
+//     let element;
+//     for (const todo of todosObjects){
+//         if(todo.status!== "deleted"){
+//             if(serchInput.innerText===todo.text){
+//                 let elements = document.getElementsByClassName("todo-container");
+//                 for (const container of elements){
+//                     if(container.classList.contains(todo.id.toString())){
+//                         container.classList.add("serch");
+                        
+//                     }
+//                 }
+//             }
+//             // element.classList.add("serch");
+//             // console.log(x);
+//         }    // console.log(x);
+
+
+        
+//     }
+// }
+
+// function serching(){
+//     let clas;
+//     let containers = document.getElementsByClassName("todo-container");
+//     for (const container of containers) {
+//         console.log(container.innerText);
+//         if(container.innerText.contains(serchInput.innerText)){
+//             clas="serch";
+//             container.classList.add(clas);
+//         }
+//     }
+//     clas = "";
+// }
