@@ -36,22 +36,3 @@ A todo List Web Application, in which the user can add and store prioritized tod
 
 
 
-## Grading policy
-
-- Your project will be graded by the number of automatic tests you pass
-- Using jsonbin.io
-- Extra freestyle features - Please add an explanation about the bonus features you added to the readme.md
-- new jest/puppeteer test
-- Code quality and style: indentation, Meaningful and non-disambiguate variable names, Comments documentation
-- Visual creativity, use css to make this app look awesome 💅🏿
-- Division to reusable functions, no code duplication
-- Git usage: meaningful commit messages, small commits, folder and file structures
-
-## Submitting
-
-- Change this file (README.md) and style it to showcase your solution (gifs, explanations, link to the github page, links to resources you used, etc...)
-- Submit your solution repo to the [ChallengeMe](http://challengeme.suvelocity.org/) system
-- Submit your repo link and github page and video to Google Classroom
-- Record a 5-10 min selfie video, describe yourself in a few words (age, location, military background, technological background). Also, talk about the solution you submitted (try to explain how your app works in general and which bonuses you added). Think about this video as an interview.
-
-GOOD LUCK!
