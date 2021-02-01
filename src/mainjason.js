@@ -1,5 +1,19 @@
 
-
+window.onload = function(){
+        const previusObj = JSON.parse(localStorage.getItem("todosObjects"));
+        if(previusObj){
+            
+            creatingaLiWithObjData(previusObj);
+            // for (const obj of previusObj){
+            //     if(obj.status!== "deleted"){
+            //         const listItem = newElement( "li" , "list-item" , "" , list);
+            //         listItem.innerHTML = obj.liHtml;
+            //         listItem.classList.add(obj.liClass);
+            //         addEventToButtons(); 
+            //     }
+            // }
+        }
+    }
 async function main(){
 
     async function postdata(data){
@@ -28,11 +42,21 @@ async function main(){
         return myjason.record;
     };
 
-    window.onload = function(){ 
-        if(Todos["my-todo"]!==null){
-          creatingaLiWithObjData(Todos["my-todo"]);
-        }
-    }
+    // window.onload = function(){
+    //     const previusObj = JSON.parse(localStorage.getItem("todosObjects"));
+    //     if(previusObj){
+            
+    //         creatingaLiWithObjData(previusObj);
+    //         // for (const obj of previusObj){
+    //         //     if(obj.status!== "deleted"){
+    //         //         const listItem = newElement( "li" , "list-item" , "" , list);
+    //         //         listItem.innerHTML = obj.liHtml;
+    //         //         listItem.classList.add(obj.liClass);
+    //         //         addEventToButtons(); 
+    //         //     }
+    //         // }
+    //     }
+    // }
 
    
 
@@ -78,28 +102,45 @@ async function main(){
     let identfy = jasonBin.identfy !== null ? jasonBin.identfy : 0 ;
     let qount = jasonBin.qounter !== null ?  Number(jasonBin.qounter) : 0 ;
     let Todos = jasonBin !== null ? jasonBin : {
-        "my-todo": null ,
+        "my-todo": [] ,
         "qounter": qount ,
         "identfy": identfy
     }; 
     console.log(jasonBin.qounter);  //
     console.log(jasonBin.identfy);//
+    console.log(Todos);
+    console.log(qount);
+    console.log(identfy);
+    localStorage.setItem("todosObjects" , JSON.stringify(["my-todo"]));
+    localStorage.setItem("qounter" ,qount);
+    localStorage.setItem("identfy" ,identfy);
+
     let witchIcon="default";
     qounter.innerText=qount;
 
 
+
+    // window.onload = function(){ 
+    //     if(Todos["my-todo"]!==""){
+    //       creatingaLiWithObjData(Todos["my-todo"]);
+    //     }
+    // }
+
+
     function deleting(event){  
-        for (const obj of todosObjects) {
+        for (const obj of Todos["my-todo"]) {
         if(event.currentTarget.parentElement.parentElement.classList.contains(obj.id.toString())){
             obj.status="deleted";
         }
         }
-        localStorage.setItem("todosObjects" , JSON.stringify(todosObjects));
+        localStorage.setItem("my-todo" , JSON.stringify(Todos["my-todo"]));
         event.currentTarget.parentElement.parentElement.parentElement.remove();
         --qount;
+        Todos["qounter"] = qount
+        console.log(Todos)
         qounter.innerText=qount;
         localStorage.setItem("qounter" ,qount);
-        postdata(todosObjects, qount , identfy);
+        postdata(Todos);
     }
 
     function addTodo(event){
@@ -108,10 +149,9 @@ async function main(){
         listItem.classList.add(witchIcon);///////can remove this line and change above
         const todoContainer = newElement( "div" , "todo-container"  , "" ,  listItem);
         todoContainer.classList.add(identfy);
-        const todoText = newElement( "span" , "todo-text" , input.value , todoContainer);
         const priority = newElement( "span" , "todo-priority" , priorityNum.value , todoContainer); 
         const createdAt = newElement( "span" , "todo-created-at" , new Date().toLocaleString().replace('.', '-').replace('.', '-').replace(',', ' ') , todoContainer);
-        
+        const todoText = newElement( "span" , "todo-text" , input.value , todoContainer);
        
         addingButtons(todoContainer);
 
@@ -123,12 +163,12 @@ async function main(){
         // todoObj.containerInnerHtml = todoContainer.innerHTML;
         todoObj.liClass = witchIcon;
         todoObj.liHtml = listItem.innerHTML;
-        todosObjects.push(todoObj);
+        Todos["my-todo"].push(todoObj);
 
     //post
-        let todosObjJason=JSON.stringify(todosObjects);
+        let TodosJason=JSON.stringify(Todos);
         localStorage.clear();
-        localStorage.setItem("todosObjects" , todosObjJason);
+        localStorage.setItem("todosObjects" , TodosJason["my-todo"]);
         //postdata(todosObjects);
         input.value="";
         qount++;
@@ -136,7 +176,10 @@ async function main(){
         ++identfy;
         localStorage.setItem("qounter" ,qount);
         localStorage.setItem("identfy" ,identfy);
-        postdata( todosObjects , qount , identfy);
+        
+        Todos["identfy"]=identfy;
+        Todos["qounter"]=qount;
+        postdata( Todos);
     }
     
     function marking(event){
@@ -161,7 +204,7 @@ async function main(){
     }
     
     function sorting2(){
-        const arrey = sort(todosObjects);
+        const arrey = sort(Todos["my-todo"]);
         list.innerHTML="";
         creatingaLiWithObjData(arrey);
     }
