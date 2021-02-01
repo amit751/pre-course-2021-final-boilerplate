@@ -1,73 +1,97 @@
-function newElement( element , clas , content , appendTo){
-    const x = document.createElement(element);
-    x.classList.add(clas);
-    x.innerText=content;
-    appendTo.append(x);
-    return x;
+///catching elements that i need - structre of html +evetliseners
+const serchInput=catchElement("serch-input");
+const serchButton=catchElement("serch-button");
+const list = catchElement("list");
+let qounter = catchElement("counter");
+let input = catchElement("text-input");
+let viewSection = catchElement("view-section");
+let priorityNum = catchElement("priority-selector");  
+const sortButton = catchElement("sort-button");
+const addButton = catchElement("add-button");
+addButton.addEventListener("click", addTodo );
+sortButton.addEventListener("click",sorting2);
+const icon1 =  catchElement("img1");
+const icon2 =  catchElement("img2");
+const icon3 =  catchElement("img3");
+const divIcons = catchElement("icons");
+divIcons.addEventListener("click" , choseIcon);
+////////////////////////
+
+//////asiigning to varibales - the starting point of varibles value
+let identfy=0;
+if(JSON.parse(localStorage.getItem("identfy"))){
+    identfy=  JSON.parse(localStorage.getItem("identfy"));   
 }
-function catchElement(id){
-    const x = document.getElementById(id);
-    return x;
+let qount =Number(localStorage.getItem("qounter"));
+qounter.innerText=qount;
+let todosObjects=[];
+let witchIcon;
+if(JSON.parse(localStorage.getItem("todosObjects"))){
+     todosObjects=  JSON.parse(localStorage.getItem("todosObjects"));   
+}else{ todosObjects=[];
 }
 
+//creating element giving it properties, content and more
+function newElement( element , clas , content , appendTo){
+    const elm = document.createElement(element);
+    elm.classList.add(clas);
+    elm.innerText=content;
+    appendTo.append(elm);
+    return elm;
+}
+//catching element from html to js
+function catchElement(id){
+    const element = document.getElementById(id);
+    return element;
+}
+//on louding it reads localstorage`s todos and represintig them on the page
 window.onload = function(){
     if(JSON.parse(localStorage.getItem("todosObjects"))){
         const previusObj = JSON.parse(localStorage.getItem("todosObjects"));
         creatingaLiWithObjData(previusObj);
-        // for (const obj of previusObj){
-        //     if(obj.status!== "deleted"){
-        //         const listItem = newElement( "li" , "list-item" , "" , list);
-        //         listItem.innerHTML = obj.liHtml;
-        //         listItem.classList.add(obj.liClass);
-        //         addEventToButtons(); 
-        //     }
-        // }
     }
 }
-
+//delete listitem(a todo)
 function deleting(event){  
-    for (const obj of todosObjects) {
-       if(event.currentTarget.closest("div").classList.contains(obj.id.toString())){  //was befor:event.currentTarget.parentElement.parentElement.classList.contains(obj.id.toString())
+    for (const obj of todosObjects){
+       if(event.currentTarget.closest("div").classList.contains(obj.id.toString())){  
            obj.status="deleted";
-       }
+        }
     }
     localStorage.setItem("todosObjects" , JSON.stringify(todosObjects));
-    // event.currentTarget.parentElement.parentElement.parentElement.remove();
-    event.currentTarget.closest("li").remove(); // insted
+    event.currentTarget.closest("li").remove(); 
     --qount;
     qounter.innerText=qount;
     localStorage.setItem("qounter" ,qount);
 }
-
+//whats hapnenig when adding a todo: reding the input , creating todo and saving in arrey of objects
 function addTodo(event){
-
+    //creating structre of listitem and filling with data
     const listItem = newElement( "li" , "list-item" , "" , list);
-    listItem.classList.add(witchIcon);///////can remove this line and change above
+    listItem.classList.add(witchIcon);
     const todoContainer = newElement( "div" , "todo-container"  , "" ,  listItem);
     todoContainer.classList.add(identfy);
     const priority = newElement( "span" , "todo-priority" , priorityNum.value , todoContainer);
     const createdAt = newElement( "span" , "todo-created-at" , new Date().toLocaleString().replace('.', '-').replace('.', '-').replace(',', ' ') , todoContainer);
     const todoText = newElement( "span" , "todo-text" , input.value , todoContainer);
-     
     addingButtons(todoContainer);
+    ////////
 
+    ///saving information about the todo in an arey
     let todoObj ={};
     todoObj.id = identfy;
     todoObj.text =  input.value;
     todoObj.priority = priorityNum.value; 
     todoObj.date =  new Date().toLocaleString().replace('.', '-').replace('.', '-').replace(',', ' ') ;
-    // todoObj.containerInnerHtml = todoContainer.innerHTML;
     todoObj.liClass = witchIcon;
     todoObj.liHtml = listItem.innerHTML;
     todosObjects.push(todoObj);
+    //////
 
-
+    /////saving the arrey in local storage
     let todosObjJason=JSON.stringify(todosObjects);
     localStorage.clear();
     localStorage.setItem("todosObjects" , todosObjJason);
-    
-    
-   
     input.value="";
     qount++;
     qounter.innerText=qount;
@@ -78,39 +102,36 @@ function addTodo(event){
     
     
 }
+///mark a todo line
 function marking(event){
     if(!event.currentTarget.closest("div").classList.contains("marker")){
-        event.currentTarget.closest("div").classList.add("marker");               // insted event.currentTarget.parentElement.parentElement.classList
+        event.currentTarget.closest("div").classList.add("marker");               
     }else{
         event.currentTarget.closest("div").classList.remove("marker");
     }
 }
+
+///takes an areey and sort it acording to the priority property
 function sort(arr){
     const newArr=[];
     for(let i =5 ; i>0 ; i--){
         for (const obj of arr) {
             if( obj.priority === i.toString()){
                 newArr.push(obj);
-                
             } 
-        } 
+        }
     }
     return newArr;
 }
+
+//when clicking on sort
 function sorting2(){
     const arrey = sort(todosObjects);
     list.innerHTML="";
     creatingaLiWithObjData(arrey);
-    // for (const obj of arrey) {
-    //     if(obj.status!== "deleted"){
-    //         const listItem = newElement( "li" , "list-item" , "" , list);
-    //         listItem.innerHTML=obj.liHtml;
-    //         listItem.classList.add(obj.liClass);
-    //         addEventToButtons();
-    //     }
-    // }
+    
 }
-
+///this function anable to chose an icon to a todo
 function choseIcon(event){
     switch(event.target){
         case icon1:
@@ -133,7 +154,7 @@ function choseIcon(event){
             break;
     }
 }
-
+////ading the buttons and their callback function to every list item
 function addingButtons(todoContainer){
 
     const buttonsContainer = newElement( "span" , "buttons-container" , "" ,todoContainer );
@@ -143,60 +164,9 @@ function addingButtons(todoContainer){
     markButton.addEventListener("click" , marking );    
 }
 
-// function readingContentFromObj(obj, todoContainer,listItem){
-//     const createdAt = newElement( "span" , "todo-created-at" , obj.date , todoContainer);
-//     const todoText = newElement( "span" , "todo-text" , obj.text , todoContainer);
-//     const priority = newElement( "span" , "todo-priority" , obj.priority , todoContainer);
-//     listItem.classList.add(obj.liClass);
-// } 
 
-
-
-
-
-///main structre of html
-const serchInput=catchElement("serch-input");
-const serchButton=catchElement("serch-button");
-const list = catchElement("list");
-let qounter = catchElement("counter");
-let input = catchElement("text-input");
-let viewSection = catchElement("view-section");
-let priorityNum = catchElement("priority-selector");  
-const sortButton = catchElement("sort-button");
-const addButton = catchElement("add-button");
-addButton.addEventListener("click", addTodo );
-sortButton.addEventListener("click",sorting2);
-// serchButton.addEventListener( "click", serching);
-////////////////////////
-
-///////////////asiigning to varibales
-let identfy=0;
-if(JSON.parse(localStorage.getItem("identfy"))){
-    identfy=  JSON.parse(localStorage.getItem("identfy"));   
-}
-let qount =Number(localStorage.getItem("qounter"));
-qounter.innerText=qount;
-let todosObjects=[];
-let witchIcon;
-if(JSON.parse(localStorage.getItem("todosObjects"))){
-     todosObjects=  JSON.parse(localStorage.getItem("todosObjects"));   
-}else{ todosObjects=[];
-}
-////////////////////////
-
-/////code for icons
-const icon1 =  catchElement("img1");
-const icon2 =  catchElement("img2");
-const icon3 =  catchElement("img3");
-const divIcons = catchElement("icons");
-divIcons.addEventListener("click" , choseIcon);
-////////////////
-
-
-
-
+///when needed it giving the delet and mark botton eventlistiener
 function addEventToButtons(){
-
     let allDelete = document.getElementsByClassName( "delete");
     for (const button of allDelete) {
         button.addEventListener("click" ,deleting );
@@ -206,11 +176,7 @@ function addEventToButtons(){
         button.addEventListener("click" ,marking );
     }
 }
-
-
-
-
-
+/////receving information and create an list item - a todo 
 function creatingaLiWithObjData(arrey){
     for (const obj of arrey) {
         if(obj.status!== "deleted"){
@@ -223,7 +189,7 @@ function creatingaLiWithObjData(arrey){
     }
 }
 
-
+////the 2 functions putting a crossline on a todo
 function addEventTodoLine(){
 
     let allTodoLine = document.getElementsByClassName( "todo-text");
@@ -235,45 +201,11 @@ function addEventTodoLine(){
 function done(event){
     if(event.target.closest("span")){
     if(!event.currentTarget.parentElement.classList.contains("done")){
-        event.currentTarget.parentElement.classList.add("done");               // insted event.currentTarget.parentElement.parentElement.classList
+        event.currentTarget.parentElement.classList.add("done");               
     }else{
         event.currentTarget.parentElement.classList.remove("done");
     }
 }
 }
 
-// function serching(){
-//     let x;
-//     let element;
-//     for (const todo of todosObjects){
-//         if(todo.status!== "deleted"){
-//             if(serchInput.innerText===todo.text){
-//                 let elements = document.getElementsByClassName("todo-container");
-//                 for (const container of elements){
-//                     if(container.classList.contains(todo.id.toString())){
-//                         container.classList.add("serch");
-                        
-//                     }
-//                 }
-//             }
-//             // element.classList.add("serch");
-//             // console.log(x);
-//         }    // console.log(x);
-
-
-        
-//     }
-// }
-
-// function serching(){
-//     let clas;
-//     let containers = document.getElementsByClassName("todo-container");
-//     for (const container of containers) {
-//         console.log(container.innerText);
-//         if(container.innerText.contains(serchInput.innerText)){
-//             clas="serch";
-//             container.classList.add(clas);
-//         }
-//     }
-//     clas = "";
-// }
+/////

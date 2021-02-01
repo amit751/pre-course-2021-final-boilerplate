@@ -1,11 +1,4 @@
 
-// window.onload = function(){
-//     if(JSON.parse(localStorage.getItem("todosObjects"))){
-//         const previusObj = JSON.parse(localStorage.getItem("todosObjects"));
-//         creatingaLiWithObjData(previusObj);
-        
-//     }
-// }
 
 async function main(){
 
@@ -17,7 +10,7 @@ async function main(){
         }
     }
 
-  ///main structre of html
+    ///catching elements
     const list = catchElement("list");
     let qounter = catchElement("counter");
     let input = catchElement("text-input");
@@ -27,14 +20,12 @@ async function main(){
     const addButton = catchElement("add-button");
     addButton.addEventListener("click", addTodo );
     sortButton.addEventListener("click",sorting2);
+    
+    ///initiate values - taking from bin
     let identfy=0;
     let qount =0;
     let dataJason = await getdata();
-    // let jasonBin = dataJason !== "" ? dataJason : {
-    //     "my-todo": [] ,
-    //     "qounter": qount ,
-    //     "identfy": identfy
-    // };
+    
     let jasonBin = dataJason !== "" ? dataJason : [];
     console.log(jasonBin);
     
@@ -49,30 +40,19 @@ async function main(){
     if( jasonBin["my-todo"]!==""){
         console.log(jasonBin["my-todo"])
         todosObjects=  jasonBin["my-todo"];   
-        // todosObjects=JSON.parse(todosObjects);
+        
         
     }
     let witchIcon = "default";
+
+    ////code to select icon
     const icon1 =  catchElement("img1");
     const icon2 =  catchElement("img2");
     const icon3 =  catchElement("img3");
     const divIcons = catchElement("icons");
     divIcons.addEventListener("click" , choseIcon);
 
-
-
-
-   
-
-
-    // window.addEventListener('load', loading); 
-    // function loading() {
-    //     console.log(todosObjects);
-    //     creatingaLiWithObjData(todosObjects);
-    //     console.log('page is fully loaded');
-    // }
-
-
+    /////post data to bin
     async function postdata(data){
         const response =await fetch("https://api.jsonbin.io/v3/b/601585fab41a937c6d54546e" ,{ 
         method: 'PUT' ,
@@ -84,13 +64,14 @@ async function main(){
         const jason = await response.json();
         console.log( jason);
     }
+    ////read from bin
     async function getdata(){
         const response = await fetch("https://api.jsonbin.io/v3/b/601585fab41a937c6d54546e/latest" );
         const myjason = await response.json();
         console.log(myjason.record);
         return myjason.record;
     };
-
+    ///create a new element
     function newElement( element , clas , content , appendTo){
         const x = document.createElement(element);
         x.classList.add(clas);
@@ -98,11 +79,12 @@ async function main(){
         appendTo.append(x);
         return x;
     }
+    //catching element from html
     function catchElement(id){
         const x = document.getElementById(id);
         return x;
     }
-
+    ///delete a todo
     function deleting(event){  
         for (const obj of todosObjects) {
         if(event.currentTarget.parentElement.parentElement.classList.contains(obj.id.toString())){
@@ -122,7 +104,7 @@ async function main(){
         console.log(jasonBin["qounter"] );
         postdata(jasonBin);
     }
-
+    ///addtodo
     function addTodo(event){
         
 
@@ -140,14 +122,14 @@ async function main(){
         todoObj.text =  input.value;
         todoObj.priority = priorityNum.value; 
         todoObj.date =  new Date().toLocaleString().replace('.', '-').replace('.', '-').replace(',', ' ') ;
-        // todoObj.containerInnerHtml = todoContainer.innerHTML;
+        
         todoObj.liClass = witchIcon;
         todoObj.liHtml = listItem.innerHTML;
         console.log(todosObjects);
         console.log(todoObj);
         
         console.log(todoObj.liHtml);
-        // todosObjects=JSON.parse(todosObjects);
+
         console.log(todosObjects);
         todosObjects.push(todoObj);
         
@@ -167,6 +149,7 @@ async function main(){
         input.value="";
         
     }
+    ///marker fitcher
     function marking(event){
         if(!event.currentTarget.parentElement.parentElement.classList.contains("marker")){
             event.currentTarget.parentElement.parentElement.classList.add("marker"); 
@@ -174,6 +157,7 @@ async function main(){
             event.currentTarget.parentElement.parentElement.classList.remove("marker");
         }
     }
+    ////sort an areey
     function sort(arr){
         const newArr=[];
         for(let i =5 ; i>0 ; i--){
@@ -186,12 +170,14 @@ async function main(){
         }
         return newArr;
     }
+    ///new placement of todos after pushing the button
     function sorting2(){
         const arrey = sort(todosObjects);
         list.innerHTML="";
         creatingaLiWithObjData(arrey);
     
     }
+    ///code to select icon
     function choseIcon(event){
         switch(event.target){
             case icon1:
@@ -238,23 +224,18 @@ async function main(){
             button.addEventListener("click" ,marking );
         }
     }
+    ////create alist item whit a todo' receve data to fill the content of them
     function creatingaLiWithObjData(arrey){
         for (const obj of arrey) {
             if(obj.status!== "deleted"){
                 const listItem = newElement( "li" , "list-item" , "" , list);
-                // let x = document.createElement(`<div class="todo-container${obj.priority}"><span class="todo-priority">${obj.priority}</span><span class="todo-created-at">${obj.date}</span><span class="todo-text">${obj.text}</span><span class="buttons-container"><button class="delete">delete</button><button class="mark">mark</button></span></div>`);
-                // listItem.append(x);
                 listItem.innerHTML=obj.liHtml;
                 listItem.classList.add(obj.liClass);
                 addEventToButtons();
             }
         }
     }
-    postdata({
-        "my-todo": "" ,
-        "qounter": "",
-        "identfy": ""
-    });   
+   
 
 }
 
