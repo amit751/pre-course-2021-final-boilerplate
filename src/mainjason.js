@@ -28,7 +28,13 @@ async function main(){
         return myjason.record;
     };
 
+    window.onload = function(){ 
+        if(todosObjects!==null){
+          creatingaLiWithObjData(jasonBin[todosObjects]);
+      }
+    }
 
+   
 
 
     function newElement( element , clas , content , appendTo){
@@ -42,47 +48,49 @@ async function main(){
         const x = document.getElementById(id);
         return x;
     }
+    ///main structre of html
+    const list = catchElement("list");
+    let qounter = catchElement("counter");
+    let input = catchElement("text-input");
+    let viewSection = catchElement("view-section");
+    let priorityNum = catchElement("priority-selector");  
+    const sortButton = catchElement("sort-button");
+    const addButton = catchElement("add-button");
+    addButton.addEventListener("click", addTodo );
+    sortButton.addEventListener("click",sorting2);
+    ////////////////////////
+
+   
+
+    /////code for icons
+    const icon1 =  catchElement("img1");
+    const icon2 =  catchElement("img2");
+    const icon3 =  catchElement("img3");
+    const divIcons = catchElement("icons");
+    divIcons.addEventListener("click" , choseIcon);
+    ////////////////
+    
 
 
     jasonBin = await getdata();
-    console.log(jasonBin);
+    console.log(jasonBin); //
     let todosObjects = jasonBin["my-todo"] !== null ? jasonBin["my-todo"] : [] ;
+    console.log(todosObjects);
     let identfy = jasonBin.identfy !== null ? jasonBin.identfy : 0 ;
     let qount = jasonBin.qounter !== null ?  Number(jasonBin.qounter) : 0 ;
-
-    // if(JSON.parse(localStorage.getItem("identfy"))){                       
-    //     identfy=  JSON.parse(localStorage.getItem("identfy"));   
-    // }
-    let qount;
-    if(jasonBin.qounter){
-        qount = Number(jasonBin.qounter);
-    }else{
-        qount=0;
-    }
-    qounter.innerText=qount;
-    let todosObjects=[];
+    console.log(jasonBin.qounter);  //
+    console.log(jasonBin.identfy);//
     let witchIcon="default";
-    if(jasonBin["my-todo"]){
-        todosObjects= jasonBin["my-todo"];   
-    }else{ todosObjects=[];
-    }
+    qounter.innerText=qount;
 
+    
+    
 
-
-
-
-
-
-
-
-    window.onload = async function(){
-        const jasonBin = await getdata();
-        if(jasonBin["my-todo"]){
-            creatingaLiWithObjData(jasonBin["my-todo"]);
-            todosObjects=jasonBin["my-todo"];
-            
-        }
-    }
+    // window.onload = function(){ 
+    //       if(todosObjects!==null){
+    //         creatingaLiWithObjData(jasonBin[todosObjects]);
+    //     }
+    // }
     // window.onload = function(){
     //     if(JSON.parse(localStorage.getItem("todosObjects"))){
     //         const previusObj = JSON.parse(localStorage.getItem("todosObjects"));
@@ -102,7 +110,7 @@ async function main(){
         --qount;
         qounter.innerText=qount;
         localStorage.setItem("qounter" ,qount);
-        postdata(todosObjects, qount);
+        postdata(todosObjects, qount , identfy);
     }
 
     function addTodo(event){
@@ -140,10 +148,8 @@ async function main(){
         localStorage.setItem("qounter" ,qount);
         localStorage.setItem("identfy" ,identfy);
         postdata( todosObjects , qount , identfy);
-    
-        
-        
     }
+    
     function marking(event){
         if(!event.currentTarget.parentElement.parentElement.classList.contains("marker")){
             event.currentTarget.parentElement.parentElement.classList.add("marker"); 
@@ -151,6 +157,7 @@ async function main(){
             event.currentTarget.parentElement.parentElement.classList.remove("marker");
         }
     }
+    
     function sort(arr){
         const newArr=[];
         for(let i =5 ; i>0 ; i--){
@@ -163,6 +170,7 @@ async function main(){
         }
         return newArr;
     }
+    
     function sorting2(){
         const arrey = sort(todosObjects);
         list.innerHTML="";
@@ -205,57 +213,6 @@ async function main(){
     }
 
 
-    ///main structre of html
-    const list = catchElement("list");
-    let qounter = catchElement("counter");
-    let input = catchElement("text-input");
-    let viewSection = catchElement("view-section");
-    let priorityNum = catchElement("priority-selector");  
-    const sortButton = catchElement("sort-button");
-    const addButton = catchElement("add-button");
-    addButton.addEventListener("click", addTodo );
-    sortButton.addEventListener("click",sorting2);
-    ////////////////////////
-
-    ///////////////asiigning to varibales
-   
-
-    // let jasonbin = async function (){
-    //     return await getdata();
-    // }
-
-    // let jasonBin = await getdata();
-    let identfy=0;
-
-    console.log(jasonBin);
-    if(jasonBin.identfy){               
-        identfy=jasonBin.identfy;
-    }
-    // if(JSON.parse(localStorage.getItem("identfy"))){                       
-    //     identfy=  JSON.parse(localStorage.getItem("identfy"));   
-    // }
-    let qount;
-    if(jasonBin.qounter){
-        qount = Number(jasonBin.qounter);
-    }else{
-        qount=0;
-    }
-    qounter.innerText=qount;
-    let todosObjects=[];
-    let witchIcon="default";
-    if(jasonBin["my-todo"]){
-        todosObjects= jasonBin["my-todo"];   
-    }else{ todosObjects=[];
-    }
-
-
-    /////code for icons
-    const icon1 =  catchElement("img1");
-    const icon2 =  catchElement("img2");
-    const icon3 =  catchElement("img3");
-    const divIcons = catchElement("icons");
-    divIcons.addEventListener("click" , choseIcon);
-    ////////////////
     
     
 
@@ -282,6 +239,7 @@ async function main(){
             }
         }
     }
+    
 }
 
 main();
