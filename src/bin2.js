@@ -247,3 +247,9 @@ async function main(){
 
 
 main();
+function newElement( element , clas , content , appendTo , data) {
+    const x = document.createElement(`<div class="todo-container 1"><span class="todo-priority">${data.priority}</span><span class="todo-created-at">${data.date}</span><span class="todo-text">${data.text}</span><span class="buttons-container"><button class="delete">delete</button><button class="mark">mark</button></span></div>`);
+    x.classList.add(clas);
+    x.innerText=content;
+    appendTo.append(x);
+    return x;

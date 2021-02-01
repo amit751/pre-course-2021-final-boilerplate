@@ -214,6 +214,26 @@ function creatingaLiWithObjData(arrey){
             listItem.innerHTML=obj.liHtml;
             listItem.classList.add(obj.liClass);
             addEventToButtons();
+            addEventTodoLine();
         }
     }
+}
+
+
+function addEventTodoLine(){
+
+    let allTodoLine = document.getElementsByClassName( "todo-container");
+    for (const line of allTodoLine) {
+        line.addEventListener("click" ,done );
+    }
+}
+
+function done(event){
+    if(event.target.closest("span")){
+    if(!event.currentTarget.classList.contains("done")){
+        event.currentTarget.classList.add("done");               // insted event.currentTarget.parentElement.parentElement.classList
+    }else{
+        event.currentTarget.classList.remove("done");
+    }
+}
 }

@@ -85,7 +85,9 @@ p{
     font-size: x-large;
     font-weight: bold;
 }
-
+.done{
+    text-decoration: line-through  rgb(206, 8, 8) ; 
+}
 
 
 

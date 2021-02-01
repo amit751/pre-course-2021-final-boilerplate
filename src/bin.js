@@ -37,7 +37,7 @@ async function main(){
     // };
     let jasonBin = dataJason !== "" ? dataJason : [];
     console.log(jasonBin);
-
+    
     if(jasonBin["identfy"]!==""){
         identfy=  jasonBin.identfy;   
     }
@@ -145,6 +145,8 @@ async function main(){
         todoObj.liHtml = listItem.innerHTML;
         console.log(todosObjects);
         console.log(todoObj);
+        
+        console.log(todoObj.liHtml);
         // todosObjects=JSON.parse(todosObjects);
         console.log(todosObjects);
         todosObjects.push(todoObj);
@@ -240,17 +242,19 @@ async function main(){
         for (const obj of arrey) {
             if(obj.status!== "deleted"){
                 const listItem = newElement( "li" , "list-item" , "" , list);
+                // let x = document.createElement(`<div class="todo-container${obj.priority}"><span class="todo-priority">${obj.priority}</span><span class="todo-created-at">${obj.date}</span><span class="todo-text">${obj.text}</span><span class="buttons-container"><button class="delete">delete</button><button class="mark">mark</button></span></div>`);
+                // listItem.append(x);
                 listItem.innerHTML=obj.liHtml;
                 listItem.classList.add(obj.liClass);
                 addEventToButtons();
             }
         }
     }
-    // postdata({
-    //     "my-todo": "" ,
-    //     "qounter": "",
-    //     "identfy": ""
-    // });   
+    postdata({
+        "my-todo": "" ,
+        "qounter": "",
+        "identfy": ""
+    });   
 
 }
 
