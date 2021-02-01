@@ -27,12 +27,13 @@ window.onload = function(){
 
 function deleting(event){  
     for (const obj of todosObjects) {
-       if(event.currentTarget.parentElement.parentElement.classList.contains(obj.id.toString())){
+       if(event.currentTarget.closest("div").classList.contains(obj.id.toString())){  //was befor:event.currentTarget.parentElement.parentElement.classList.contains(obj.id.toString())
            obj.status="deleted";
        }
     }
     localStorage.setItem("todosObjects" , JSON.stringify(todosObjects));
-    event.currentTarget.parentElement.parentElement.parentElement.remove();
+    // event.currentTarget.parentElement.parentElement.parentElement.remove();
+    event.currentTarget.closest("li").remove(); // insted
     --qount;
     qounter.innerText=qount;
     localStorage.setItem("qounter" ,qount);
@@ -77,10 +78,10 @@ function addTodo(event){
     
 }
 function marking(event){
-    if(!event.currentTarget.parentElement.parentElement.classList.contains("marker")){
-        event.currentTarget.parentElement.parentElement.classList.add("marker"); 
+    if(!event.currentTarget.closest("div").classList.contains("marker")){
+        event.currentTarget.closest("div").classList.add("marker");               // insted event.currentTarget.parentElement.parentElement.classList
     }else{
-        event.currentTarget.parentElement.parentElement.classList.remove("marker");
+        event.currentTarget.closest("div").classList.remove("marker");
     }
 }
 function sort(arr){
