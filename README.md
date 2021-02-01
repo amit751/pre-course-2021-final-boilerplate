@@ -15,16 +15,17 @@ A todo List Web Application, in which the user can add and store prioritized tod
 <p>It is possible to delete a task</p>
 <p>It is possible to click on the text of the task itself and then it is marked with a cross line over the text, but it is not deleted and can be seen.</p>
 <p>by clicking the marker button you can mark a task.<p>
-<h6> The code works in such a way that each task is stored in an array of objects and each object has properties that relate to the task, even when a task is deleted by the client, it is not deleted from the array (database) it just changes it in status to: deleted. In addition there is an ID for each task so it can be tracked.<h6>
-<h2>repository- includes the folllowing:</h2>
+<h4> The code works in such a way that each task is stored in an array of objects and each object has properties that relate to the task, even when a task is deleted by the client, it is not deleted from the array (database) it just changes it in status to: deleted. In addition there is an ID for each task so it can be tracked.<h4>
+<h2>repository</h2>
 <p>you can find my code in the src file:</p>
-<h5><h4>-mainjs</h4>: the main file -working with local sotrage</h5>
- -css 
- -html 
- -bin.js - app that using the jasonbin serves 
- -utlis.js - function to use api 
- -imgs(ther was a probleme to store them in a seperate file)
-
+<ul>
+<li><h4>-mainjs: the main file -working with local sotrage</h4></li>
+<li>-css </li>
+<li>-html</li>
+<li>-bin.js - app that using the jasonbin serves</li>
+<li>-utlis.js - function to use api</li>
+<li>-utlis.js - function to use api</li>
+<h4>-imgs(ther was a probleme to store them in a seperate file)</h4>
 
 
 <h2>links i used</h2>
