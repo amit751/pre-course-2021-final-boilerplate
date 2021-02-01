@@ -1,5 +1,4 @@
  Pre Course Project - Todo List 📋
-<<<<<<< HEAD
 <h1>amit mor - final projact , cyber4s pre-course</h1>
 <p>hi this is my final project - a todo list. 
 in this file will introduce the following topics: 
@@ -12,42 +11,6 @@ in this file will introduce the following topics:
 <h2>Todo List Web Application</h2>
 A todo List Web Application, in which the user can add and store prioritized todo tasks - view and sort that list. the tasks are saved at the localstorage, so localy the information is saved. <h3>there are the following options:</h3>
 <p>When writing the task, you can select one of the categories - that is, the icons that symbolize: Tasks related to leisure work or home - respectively, next to the task, the icon is displayed. You dont have to use this fetcher.</p>
-=======
-<h1> amit mor  - final projact at the cyber4s pre-course</h1>
-hi this is my final project - a todo list. 
-in this file will introduce the following topics:
--What does the app include
-- the repository
-- useful Links 
-<h2>Todo List Web Application<h2>
- <p></p>
-A todo List Web Application, in which the user can add and store prioritized todo tasks - view and sort that list.
-the tasks are saved at the localstorage, so localy the information is saved.
-there are the following options:
- 
- 
- -When writing the task, you can select one of the categories - that is, the icons that symbolize: Tasks related to leisure work or home - respectively, next to the task, the icon is displayed. You dont have to use this fetcher.
-- It is possible to delete a task
--It is possible to click on the text of the task itself and then it is marked with a cross line over the text, but it is not deleted and can be seen.
--  by clicking the marker button you can mark a task.
-The code works in such a way that each task is stored in an array of objects and each object has properties that relate to the task, even when a task is deleted by the client, it is not deleted from the array (database) it just changes it in  status to: deleted.
-In addition there is an ID  for each task so it can be tracked.
-
-<h2>repository </h2>
-<bold>-mainjs: the main file :working with local sotrage</bold>
-you can find my code in the src file:
--css
--html
--bin.js - app that using the jasonbin serves
-utlis.js -  function to use api
--imgs(ther was a probleme to sore them in a seperate file)
-
-<h2>links i used<h2>
- 
-
-
-
->>>>>>> 8f6079735b942d6d37049f76bbfb5287ae28aab4
 
 <p>It is possible to delete a task</p>
 <p>It is possible to click on the text of the task itself and then it is marked with a cross line over the text, but it is not deleted and can be seen.</p>
