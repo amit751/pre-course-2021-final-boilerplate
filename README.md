@@ -29,6 +29,7 @@ A todo List Web Application, in which the user can add and store prioritized tod
 
 
 <h2>links i used</h2>
+
 [MDN](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API)
 [YOUTUBE-LOCAL STORAGE](https://www.youtube.com/watch?v=k8yJCeuP6I8)
 
