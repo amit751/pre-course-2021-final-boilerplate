@@ -75,6 +75,7 @@ function addTodo(event){
     const createdAt = newElement( "span" , "todo-created-at" , new Date().toLocaleString().replace('.', '-').replace('.', '-').replace(',', ' ') , todoContainer);
     const todoText = newElement( "span" , "todo-text" , input.value , todoContainer);
     addingButtons(todoContainer);
+    addEventTodoLine();
     ////////
 
     ///saving information about the todo in an arey
