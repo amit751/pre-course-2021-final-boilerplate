@@ -51,7 +51,7 @@ window.onload = function(){
         creatingaLiWithObjData(previusObj);
     }
 }
-//delete listitem(a todo)
+///delete listitem(a todo)
 function deleting(event){  
     for (const obj of todosObjects){
        if(event.currentTarget.closest("div").classList.contains(obj.id.toString())){  
