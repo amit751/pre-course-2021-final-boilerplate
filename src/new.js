@@ -1,5 +1,3 @@
-
-
 async function main(){
 
     window.onload = function(){
@@ -24,18 +22,20 @@ async function main(){
     ///initiate values - taking from bin
     let identfy=0;
     let qount =0;
-    let dataJason = await getdata();
+    let dataJason = await  getPersistent();
     
     let jasonBin = dataJason !== "" ? dataJason : [];
     console.log(jasonBin);
     
     if(jasonBin["identfy"]!==""){
-        identfy=  jasonBin.identfy;   
+        identfy= Number( jasonBin["identfy"]);   
     }
-    if(jasonBin["qounter"]!==""){
-     qount =Number(jasonBin.qounter);
+    if(jasonBin["qounter"]!==null){
+     qount = Number(jasonBin["qounter"]);
+     console.log(qount);
+     console.log(jasonBin["qounter"]);
     }
-    qounter.innerText=qount;
+    qounter.innerText=qount.toString();
     let todosObjects=[];
     if( jasonBin["my-todo"]!==""){
         console.log(jasonBin["my-todo"])
@@ -53,7 +53,7 @@ async function main(){
     divIcons.addEventListener("click" , choseIcon);
 
     /////post data to bin
-    async function postdata(data){
+    async function setPersistent(data){
         const response =await fetch("https://api.jsonbin.io/v3/b/601585fab41a937c6d54546e" ,{ 
         method: 'PUT' ,
         headers: {
@@ -65,7 +65,7 @@ async function main(){
         console.log( jason);
     }
     ////read from bin
-    async function getdata(){
+    async function getPersistent(){
         const response = await fetch("https://api.jsonbin.io/v3/b/601585fab41a937c6d54546e/latest" );
         const myjason = await response.json();
         console.log(myjason.record);
@@ -96,13 +96,18 @@ async function main(){
         console.log(todosObjects);
         console.log(jasonBin["my-todo"]);
         jasonBin["my-todo"]=todosObjects;
+        console.log(jasonBin["my-todo"]);
         event.currentTarget.parentElement.parentElement.parentElement.remove();
         --qount;
-        qounter.innerText=qount;
+        console.log(qount);
+        console.log(qounter.innerText);
+        qounter.innerText=qount.toString();
+        console.log(qounter.innerText);
         localStorage.setItem("qounter" ,qount);
         jasonBin["qounter"] = qount;
         console.log(jasonBin["qounter"] );
-        postdata(jasonBin);
+        console.log(jasonBin);
+        setPersistent(jasonBin);
     }
     ///addtodo
     function addTodo(event){
@@ -132,9 +137,9 @@ async function main(){
 
         console.log(todosObjects);
         todosObjects.push(todoObj);
-        
+        console.log(todosObjects);
         qount++;
-        qounter.innerText=qount;
+        qounter.innerText=qount.toString();
         ++identfy;
         
         let todosObjJason=JSON.stringify(todosObjects);
@@ -145,7 +150,8 @@ async function main(){
         jasonBin["my-todo"] = todosObjects;
         jasonBin["qounter"] = qount;
         jasonBin["identfy"] = identfy;
-        postdata(jasonBin);
+        console.log(todosObjects);
+        setPersistent(jasonBin);
         input.value="";
         
     }
@@ -235,10 +241,19 @@ async function main(){
                 const createdAt = newElement( "span" , "todo-created-at" , obj.date , todoContainer);
                 const todoText = newElement( "span" , "todo-text" , obj.text , todoContainer);
                 const priority = newElement( "span" , "todo-priority" , obj.priority , todoContainer);
-                addingButtons(todoContainer);    
+                addingButtons(todoContainer);
+                
+                
+                
+                
+                
+                
+                
+                
             }
         }
     }
+    setPersistent({"mt-todo":""});
    
 
 }
