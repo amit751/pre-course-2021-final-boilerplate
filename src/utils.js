@@ -46,3 +46,15 @@ async function getdata1(){
   return myjason.record;
 }
 
+
+
+
+
+
+
+// const response = await fetch("https://api.jsonbin.io/v3/b/601585fab41a937c6d54546e/latest" , {method:"GET"});
+//   const myjason = await response.json();
+//   console.log(myjason.record);
+//    myjason.record
+
+//   fetch("https://api.jsonbin.io/v3/b/601585fab41a937c6d54546e/latest" , {method:"GET"}).then(resolve , reject c )
