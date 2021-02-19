@@ -18,6 +18,7 @@ async function main(){
     //////
 
     let BIN = await getdata();
+    console.log(BIN);
     let identfy;
     let qount;
     let localBin = BIN;
@@ -38,7 +39,7 @@ async function main(){
         
         todosARREY=BIN["my-todo"]
         creatingaLiWithObjData(BIN["my-todo"]);
-        
+        qounter.innerText=getQount();
     }
     localStorage.setItem("qounter" ,qount);
     localStorage.setItem("identfy" ,identfy);
@@ -59,25 +60,64 @@ async function main(){
     /////post data to bin
     async function postdata(data){
         spinnerContainer.classList.remove("none");
-        const response =await fetch("https://api.jsonbin.io/v3/b/602fa7b2bd6b755d0199af74" ,{ 
-        method: 'PUT' ,
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
-        });
-        spinnerContainer.classList.add("none");
-        // const jason = await response.json();
-        // console.log( jason);
+        try{
+            
+            const response =await fetch("https://api.jsonbin.io/v3/b/602fa7b2bd6b755d0199af74" ,{ 
+            method: 'PUT' ,
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
+            });
+            console.log("post:");
+            console.log(response);
+            spinnerContainer.classList.add("none");
+            if (!response.ok){
+                throw (`${response.status} status , post request faild`);
+            }
+            
+        }catch(error){
+            console.log(error);
+            spinnerContainer.classList.add("none");
+            alert("sory, could not save new tasks , comunication error ");
+
+        }
+
+        
     }
     
     ////read from bin
     async function getdata(){
-        spinnerContainer.classList.remove("none");
-        const response = await fetch("https://api.jsonbin.io/v3/b/602fa7b2bd6b755d0199af74/latest" );
-        const myjason = await response.json();
-        spinnerContainer.classList.add("none");
-        return myjason.record;
+        try{
+            spinnerContainer.classList.remove("none");
+            const response = await fetch("https://api.jsonbin.io/v3/b/602fa7b2bd6b755d0199af74/latest" );
+            console.log("get:");
+            console.log(response);
+            const myjason = await response.json();
+            spinnerContainer.classList.add("none");
+            if (!response.ok){
+                throw (`${response.status} status , get request faild`);
+            }
+            return myjason.record;
+        }catch(error){
+            
+            console.log(error);
+            spinnerContainer.classList.add("none");
+            alert("comunication failed , could not get your data.")
+            let usePlanB = confirm("YOU WANT TO USE YOUR LOCAL STORAGE ?");
+            if(usePlanB){
+              let test = {
+                "my-todo": JSON.parse(localStorage.getItem("todosObjects")) ,
+                identify: localStorage.getItem("todosObjects") ,
+                qounter: localStorage.getItem("qounter")
+              } 
+              
+              return test; 
+            }else{
+                console.log(55555);
+                return {"my-todo":[] , identify: 0 , qounter: 0 };
+            }
+        }
         
     };
     ///create a new element
@@ -94,7 +134,7 @@ async function main(){
         return x;
     }
     ///delete a todo
-    async function deleting(event){  
+    function deleting(event){  
         for (const obj of todosARREY) {
         if(event.currentTarget.parentElement.parentElement.classList.contains(obj.id.toString())){
             obj.status="deleted";
@@ -106,14 +146,15 @@ async function main(){
         localBin["my-todo"]=todosARREY;
         event.currentTarget.parentElement.parentElement.parentElement.remove();
         --qount;
-        qounter.innerText=qount;
+        // qounter.innerText=qount;
+        qounter.innerText=getQount();
         localStorage.setItem("qounter" ,qount);
         localBin["qounter"] = qount;
         console.log(localBin["qounter"] );
-        await postdata(localBin); ////////////may be a problem
+        postdata(localBin); ////////////may be a problem
     }
     ///addtodo
-    async function addTodo(event){
+    function addTodo(event){
         
 
         const listItem = newElement( "li" , "list-item" , "" , list);
@@ -137,7 +178,8 @@ async function main(){
         todosARREY.push(todoObj);
         
         qount++;
-        qounter.innerText=qount;
+        // qounter.innerText=qount;
+        qounter.innerText=getQount();
         ++identfy;
         
         let todosObjJason=JSON.stringify( todosARREY);
@@ -149,7 +191,7 @@ async function main(){
         localBin["qounter"] = qount;
         localBin["identfy"] = identfy;
         input.value="";
-        await postdata(localBin); //maybe a problem
+        postdata(localBin); //maybe a problem
     }
     ///marker fitcher
     function marking(event){
@@ -242,8 +284,11 @@ async function main(){
             }
         }
     }
-    
-    
+    function getQount(){
+        let tasks = document.querySelectorAll("li");
+        return tasks.length;
+    }
+    //    postdata({"my-todo":[]});  
 }
 
 
