@@ -1,14 +1,7 @@
-
+////ask about skiping on load window
 
 async function main(){
-
-    window.onload = function(){
-        if(JSON.parse(localStorage.getItem("todosObjects"))){
-            const previusObj = JSON.parse(localStorage.getItem("todosObjects"));
-            creatingaLiWithObjData(previusObj);
-            
-        }
-    }
+    
 
     ///catching elements
     const list = catchElement("list");
@@ -20,22 +13,27 @@ async function main(){
     const addButton = catchElement("add-button");
     addButton.addEventListener("click", addTodo );
     sortButton.addEventListener("click",sorting2);
+    //////
+
+    let todoObj = await getdata();
+    console.log(todoObj["my-todo"]);
+    if (!(JSON.stringify(todoObj["my-todo"])===JSON.stringify([]))){
+        creatingaLiWithObjData(todoObj["my-todo"]);
+    } 
     
-    ///initiate values - taking from bin
+    
     let identfy=0;
     let qount =0;
-    let dataJason = await getdata();
-    
-    let jasonBin = dataJason !== "" ? dataJason : [];
-    console.log(jasonBin);
-    
-    if(jasonBin["identfy"]!==""){
-        identfy=  jasonBin.identfy;   
+    let jasonBin = await getdata();
+    if(jasonBin["identfy"]){
+        identfy= Number( jasonBin["identfy"]);   
     }
-    if(jasonBin["qounter"]!==""){
-     qount =Number(jasonBin.qounter);
+    if(jasonBin["qounter"]){
+     qount = Number(jasonBin["qounter"]);
+     console.log(qount);
+     console.log(jasonBin["qounter"]);
     }
-    qounter.innerText=qount;
+    qounter.innerText=qount.toString();
     let todosObjects=[];
     if( jasonBin["my-todo"]!==""){
         console.log(jasonBin["my-todo"])
@@ -43,6 +41,24 @@ async function main(){
         
         
     }
+    
+    // let jasonBin = dataJason !== "" ? dataJason : [];
+    // console.log(jasonBin);
+    
+    // if(jasonBin["identfy"]!==""){
+    //     identfy=  jasonBin.identfy;   
+    // }
+    // if(jasonBin["qounter"]!==""){
+    //  qount =Number(jasonBin.qounter);
+    // }
+    // qounter.innerText=qount;
+    // let todosObjects=[];
+    // if( jasonBin["my-todo"]!==""){
+    //     console.log(jasonBin["my-todo"])
+    //     todosObjects=  jasonBin["my-todo"];   
+        
+        
+    // }
     let witchIcon = "default";
 
     ////code to select icon
@@ -54,7 +70,7 @@ async function main(){
 
     /////post data to bin
     async function postdata(data){
-        const response =await fetch("https://api.jsonbin.io/v3/b/601585fab41a937c6d54546e" ,{ 
+        const response =await fetch("https://api.jsonbin.io/v3/b/602fa7b2bd6b755d0199af74" ,{ 
         method: 'PUT' ,
         headers: {
             'Content-Type': 'application/json',
@@ -64,12 +80,13 @@ async function main(){
         const jason = await response.json();
         console.log( jason);
     }
+    
     ////read from bin
     async function getdata(){
-        const response = await fetch("https://api.jsonbin.io/v3/b/601585fab41a937c6d54546e/latest" );
+        const response = await fetch("https://api.jsonbin.io/v3/b/602fa7b2bd6b755d0199af74/latest" );
         const myjason = await response.json();
-        console.log(myjason.record);
         return myjason.record;
+        
     };
     ///create a new element
     function newElement( element , clas , content , appendTo){
@@ -240,7 +257,7 @@ async function main(){
         }
     }
    
-
+    
 }
 
 

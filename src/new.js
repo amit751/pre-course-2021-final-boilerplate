@@ -23,14 +23,20 @@ async function main(){
     let identfy=0;
     let qount =0;
     let dataJason = await  getPersistent();
+    let jasonBin;
+    if(dataJason["my-todo"]){
+         jasonBin = dataJason["my-todo"];   
+    }else{
+        jasonBin =[]; 
+    }
     
-    let jasonBin = dataJason !== "" ? dataJason : [];
+   
     console.log(jasonBin);
     
-    if(jasonBin["identfy"]!==""){
+    if(jasonBin["identfy"]){
         identfy= Number( jasonBin["identfy"]);   
     }
-    if(jasonBin["qounter"]!==null){
+    if(jasonBin["qounter"]){
      qount = Number(jasonBin["qounter"]);
      console.log(qount);
      console.log(jasonBin["qounter"]);
@@ -253,7 +259,7 @@ async function main(){
             }
         }
     }
-    setPersistent({"mt-todo":""});
+    // setPersistent({"my-todo":""});
    
 
 }
