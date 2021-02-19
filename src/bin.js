@@ -86,7 +86,7 @@ async function main(){
         
     }
     
-    ////read from bin
+    ///read from bin
     async function getdata(){
         try{
             spinnerContainer.classList.remove("none");
