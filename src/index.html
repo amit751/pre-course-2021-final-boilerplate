@@ -7,39 +7,46 @@
     <title>My TODO List</title>
     <script src="utils.js"></script>
   </head>
+  
   <body>
-    <div id= "control-section">
-      <div id="counter"></div><span id=quanter-text>todo's</span>
-      <button id ="sort-button" type=button>sort</button>
-      <div id=forserch></div>
-      <p>choose category:</p>
-      <div id="icons">
-        <a href="#"><img id="img1" src="./img1.jpg"></a>
-        <a href="#"><img id="img2" src="./img2.jpg"></a>
-        <a href="#"><img id="img3" src="./img3.jpg"></a>
-      
-      
-      </div>
-
-      <form action="">
-        <input type="text" id="text-input">
-        <select  id ="priority-selector">
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-          <option value="5">5</option>
-        </select>
-        <button type="button" id="add-button">add</button>
-        
-      </form>
+    <div id="spinner-container">
+      <div id="spinner"></div>
     </div>
-    <div id="view-section">
-      <ul id="list">
+    <div id="sections-container">
+      
+      <div id= "control-section">
+          <div id="counter"></div><span id=quanter-text>todo's</span>
+          <button id ="sort-button" type=button>sort</button>
+          <div id=forserch></div>
+          <p>choose category:</p>
+          <div id="icons">
+            <a href="#"><img id="img1" src="./img1.jpg"></a>
+            <a href="#"><img id="img2" src="./img2.jpg"></a>
+            <a href="#"><img id="img3" src="./img3.jpg"></a>
+          
+          
+          </div>
 
-      </ul>
+          <form action="">
+            <input type="text" id="text-input">
+            <select  id ="priority-selector">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+            <button type="button" id="add-button">add</button>
+            
+          </form>
+        </div>
+        <div id="view-section">
+          <ul id="list">
+
+          </ul>
+        </div>
     </div>
-    <div id="chek"></div>
+      
     <script src="./bin.js"></script>
   </body>
 </html>

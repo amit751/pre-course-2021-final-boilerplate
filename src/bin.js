@@ -13,6 +13,8 @@ async function main(){
     const addButton = catchElement("add-button");
     addButton.addEventListener("click", addTodo );
     sortButton.addEventListener("click",sorting2);
+    const spinnerContainer = catchElement("spinner-container");
+    spinnerContainer.setAttribute("class" , "none");
     //////
 
     let BIN = await getdata();
@@ -36,7 +38,7 @@ async function main(){
         
         todosARREY=BIN["my-todo"]
         creatingaLiWithObjData(BIN["my-todo"]);
-        // qounter.innerText=localStorage.getItem("qounter");
+        
     }
     localStorage.setItem("qounter" ,qount);
     localStorage.setItem("identfy" ,identfy);
@@ -56,21 +58,25 @@ async function main(){
 
     /////post data to bin
     async function postdata(data){
+        spinnerContainer.classList.remove("none");
         const response =await fetch("https://api.jsonbin.io/v3/b/602fa7b2bd6b755d0199af74" ,{ 
         method: 'PUT' ,
         headers: {
             'Content-Type': 'application/json',
         },
         body: JSON.stringify(data),
-        })
+        });
+        spinnerContainer.classList.add("none");
         // const jason = await response.json();
         // console.log( jason);
     }
     
     ////read from bin
     async function getdata(){
+        spinnerContainer.classList.remove("none");
         const response = await fetch("https://api.jsonbin.io/v3/b/602fa7b2bd6b755d0199af74/latest" );
         const myjason = await response.json();
+        spinnerContainer.classList.add("none");
         return myjason.record;
         
     };
