@@ -17,30 +17,48 @@ async function main(){
 
     let todoObj = await getdata();
     console.log(todoObj["my-todo"]);
-    if (!(JSON.stringify(todoObj["my-todo"])===JSON.stringify([]))){
-        creatingaLiWithObjData(todoObj["my-todo"]);
-    } 
+    // if (!(JSON.stringify(todoObj["my-todo"])===JSON.stringify([]))){
+    //     creatingaLiWithObjData(todoObj["my-todo"]);
+    // } 
     
     
     let identfy=0;
+    if(todoObj["identfy"]){
+        identfy= Number( todoObj["identfy"]);   
+    }
+
     let qount =0;
-    let jasonBin = await getdata();
-    if(jasonBin["identfy"]){
-        identfy= Number( jasonBin["identfy"]);   
+    if(todoObj["qounter"]){
+     qount = Number(todoObj["qounter"]);
+     
+     qounter.innerText=qount;
     }
-    if(jasonBin["qounter"]){
-     qount = Number(jasonBin["qounter"]);
-     console.log(qount);
-     console.log(jasonBin["qounter"]);
-    }
-    qounter.innerText=qount.toString();
-    let todosObjects=[];
-    if( jasonBin["my-todo"]!==""){
-        console.log(jasonBin["my-todo"])
-        todosObjects=  jasonBin["my-todo"];   
+    let jasonBin = todoObj;
+    todosObjects=  jasonBin["my-todo"];
+    localStorage.setItem("qounter",qount);
+
+     if (!(JSON.stringify(todoObj["my-todo"])===JSON.stringify([]))){
+        creatingaLiWithObjData(todoObj["my-todo"]);
+        qounter.innerText= localStorage.getItem("qounter");
+    } 
+    
+    // let jasonBin = await getdata();
+    // if(jasonBin["identfy"]){
+    //     identfy= Number( jasonBin["identfy"]);   
+    // }
+    // if(jasonBin["qounter"]){
+    //  qount = Number(jasonBin["qounter"]);
+    //  console.log(qount);
+    //  console.log(jasonBin["qounter"]);
+    // }
+    // qounter.innerText=qount.toString();
+    // let todosObjects=[];
+    // if( jasonBin["my-todo"]!==""){
+    //     console.log(jasonBin["my-todo"])
+        // todosObjects=  jasonBin["my-todo"];   
         
         
-    }
+    // }
     
     // let jasonBin = dataJason !== "" ? dataJason : [];
     // console.log(jasonBin);
