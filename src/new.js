@@ -259,7 +259,7 @@ async function main(){
             }
         }
     }
-    // setPersistent({"my-todo":""});
+    // setPersistent({"my-todo":[]});
    
 
 }

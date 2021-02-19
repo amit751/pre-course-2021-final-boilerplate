@@ -15,68 +15,36 @@ async function main(){
     sortButton.addEventListener("click",sorting2);
     //////
 
-    let todoObj = await getdata();
-    console.log(todoObj["my-todo"]);
-    // if (!(JSON.stringify(todoObj["my-todo"])===JSON.stringify([]))){
-    //     creatingaLiWithObjData(todoObj["my-todo"]);
-    // } 
-    
-    
-    let identfy=0;
-    if(todoObj["identfy"]){
-        identfy= Number( todoObj["identfy"]);   
+    let BIN = await getdata();
+    let identfy;
+    let qount;
+    let localBin = BIN;
+    if(BIN["identfy"]){
+        identfy= Number( BIN["identfy"]);   
+    }else{
+        identfy=0;  
     }
-
-    let qount =0;
-    if(todoObj["qounter"]){
-     qount = Number(todoObj["qounter"]);
+    if(BIN["qounter"]){
+        qount = Number(BIN["qounter"]);
+    }else{
+        qount=0;
+    }
      
-     qounter.innerText=qount;
+    let todosARREY=[];
+    qounter.innerText=qount;
+    if (!(JSON.stringify(BIN["my-todo"])===JSON.stringify([]))){
+        
+        todosARREY=BIN["my-todo"]
+        creatingaLiWithObjData(BIN["my-todo"]);
+        // qounter.innerText=localStorage.getItem("qounter");
     }
-    let jasonBin = todoObj;
-    todosObjects=  jasonBin["my-todo"];
-    localStorage.setItem("qounter",qount);
+    localStorage.setItem("qounter" ,qount);
+    localStorage.setItem("identfy" ,identfy);
+    localStorage.setItem("todosObjects" , JSON.stringify(BIN["my-todo"]));
+    
 
-     if (!(JSON.stringify(todoObj["my-todo"])===JSON.stringify([]))){
-        creatingaLiWithObjData(todoObj["my-todo"]);
-        qounter.innerText= localStorage.getItem("qounter");
-    } 
+
     
-    // let jasonBin = await getdata();
-    // if(jasonBin["identfy"]){
-    //     identfy= Number( jasonBin["identfy"]);   
-    // }
-    // if(jasonBin["qounter"]){
-    //  qount = Number(jasonBin["qounter"]);
-    //  console.log(qount);
-    //  console.log(jasonBin["qounter"]);
-    // }
-    // qounter.innerText=qount.toString();
-    // let todosObjects=[];
-    // if( jasonBin["my-todo"]!==""){
-    //     console.log(jasonBin["my-todo"])
-        // todosObjects=  jasonBin["my-todo"];   
-        
-        
-    // }
-    
-    // let jasonBin = dataJason !== "" ? dataJason : [];
-    // console.log(jasonBin);
-    
-    // if(jasonBin["identfy"]!==""){
-    //     identfy=  jasonBin.identfy;   
-    // }
-    // if(jasonBin["qounter"]!==""){
-    //  qount =Number(jasonBin.qounter);
-    // }
-    // qounter.innerText=qount;
-    // let todosObjects=[];
-    // if( jasonBin["my-todo"]!==""){
-    //     console.log(jasonBin["my-todo"])
-    //     todosObjects=  jasonBin["my-todo"];   
-        
-        
-    // }
     let witchIcon = "default";
 
     ////code to select icon
@@ -95,8 +63,8 @@ async function main(){
         },
         body: JSON.stringify(data),
         })
-        const jason = await response.json();
-        console.log( jason);
+        // const jason = await response.json();
+        // console.log( jason);
     }
     
     ////read from bin
@@ -120,36 +88,35 @@ async function main(){
         return x;
     }
     ///delete a todo
-    function deleting(event){  
-        for (const obj of todosObjects) {
+    async function deleting(event){  
+        for (const obj of todosARREY) {
         if(event.currentTarget.parentElement.parentElement.classList.contains(obj.id.toString())){
             obj.status="deleted";
         }
         }
-        localStorage.setItem("todosObjects" , JSON.stringify(todosObjects));
+        localStorage.setItem("todosObjects" , JSON.stringify(todosARREY));
         
-        console.log(todosObjects);
-        console.log(jasonBin["my-todo"]);
-        jasonBin["my-todo"]=todosObjects;
+        
+        localBin["my-todo"]=todosARREY;
         event.currentTarget.parentElement.parentElement.parentElement.remove();
         --qount;
         qounter.innerText=qount;
         localStorage.setItem("qounter" ,qount);
-        jasonBin["qounter"] = qount;
-        console.log(jasonBin["qounter"] );
-        postdata(jasonBin);
+        localBin["qounter"] = qount;
+        console.log(localBin["qounter"] );
+        await postdata(localBin); ////////////may be a problem
     }
     ///addtodo
-    function addTodo(event){
+    async function addTodo(event){
         
 
         const listItem = newElement( "li" , "list-item" , "" , list);
         listItem.classList.add(witchIcon);
         const todoContainer = newElement( "div" , "todo-container"  , "" ,  listItem);
         todoContainer.classList.add(identfy);
-        const priority = newElement( "span" , "todo-priority" , priorityNum.value , todoContainer);
         const createdAt = newElement( "span" , "todo-created-at" , new Date().toLocaleString().replace('.', '-').replace('.', '-').replace(',', ' ') , todoContainer);
         const todoText = newElement( "span" , "todo-text" , input.value , todoContainer);
+        const priority = newElement( "span" , "todo-priority" , priorityNum.value , todoContainer);
         addingButtons(todoContainer);
 
         let todoObj ={};
@@ -160,29 +127,23 @@ async function main(){
         
         todoObj.liClass = witchIcon;
         todoObj.liHtml = listItem.innerHTML;
-        console.log(todosObjects);
-        console.log(todoObj);
         
-        console.log(todoObj.liHtml);
-
-        console.log(todosObjects);
-        todosObjects.push(todoObj);
+        todosARREY.push(todoObj);
         
         qount++;
         qounter.innerText=qount;
         ++identfy;
         
-        let todosObjJason=JSON.stringify(todosObjects);
+        let todosObjJason=JSON.stringify( todosARREY);
         localStorage.clear();
         localStorage.setItem("qounter" ,qount);
         localStorage.setItem("identfy" ,identfy);
         localStorage.setItem("todosObjects" , todosObjJason);
-        jasonBin["my-todo"] = todosObjects;
-        jasonBin["qounter"] = qount;
-        jasonBin["identfy"] = identfy;
-        postdata(jasonBin);
+        localBin["my-todo"] = todosARREY;
+        localBin["qounter"] = qount;
+        localBin["identfy"] = identfy;
         input.value="";
-        
+        await postdata(localBin); //maybe a problem
     }
     ///marker fitcher
     function marking(event){
@@ -207,7 +168,7 @@ async function main(){
     }
     ///new placement of todos after pushing the button
     function sorting2(){
-        const arrey = sort(todosObjects);
+        const arrey = sort(todosARREY);
         list.innerHTML="";
         creatingaLiWithObjData(arrey);
     
@@ -270,11 +231,12 @@ async function main(){
                 const createdAt = newElement( "span" , "todo-created-at" , obj.date , todoContainer);
                 const todoText = newElement( "span" , "todo-text" , obj.text , todoContainer);
                 const priority = newElement( "span" , "todo-priority" , obj.priority , todoContainer);
-                addingButtons(todoContainer);    
+                addingButtons(todoContainer);  
+                addEventToButtons();  
             }
         }
     }
-   
+    
     
 }
 
