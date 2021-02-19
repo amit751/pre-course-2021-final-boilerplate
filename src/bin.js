@@ -1,4 +1,8 @@
 ////ask about skiping on load window
+const binPOSTpath = "https://api.jsonbin.io/v3/b/602fa7b2bd6b755d0199af74" ;
+const binGETpath = "https://api.jsonbin.io/v3/b/602fa7b2bd6b755d0199af74/latest";
+const localpath = "http://localhost:3000/b/1";
+
 
 async function main(){
     
@@ -62,7 +66,7 @@ async function main(){
         spinnerContainer.classList.remove("none");
         try{
             
-            const response =await fetch("https://api.jsonbin.io/v3/b/602fa7b2bd6b755d0199af74" ,{ 
+            const response =await fetch(localpath ,{ 
             method: 'PUT' ,
             headers: {
                 'Content-Type': 'application/json',
@@ -90,7 +94,7 @@ async function main(){
     async function getdata(){
         try{
             spinnerContainer.classList.remove("none");
-            const response = await fetch("https://api.jsonbin.io/v3/b/602fa7b2bd6b755d0199af74/latest" );
+            const response = await fetch(localpath );
             console.log("get:");
             console.log(response);
             const myjason = await response.json();
