@@ -66,7 +66,7 @@ async function main(){
         spinnerContainer.classList.remove("none");
         try{
             
-            const response =await fetch(localpath ,{ 
+            const response =await fetch(binPOSTpath ,{ 
             method: 'PUT' ,
             headers: {
                 'Content-Type': 'application/json',
@@ -94,7 +94,7 @@ async function main(){
     async function getdata(){
         try{
             spinnerContainer.classList.remove("none");
-            const response = await fetch(localpath );
+            const response = await fetch(binGETpath );
             console.log("get:");
             console.log(response);
             const myjason = await response.json();
