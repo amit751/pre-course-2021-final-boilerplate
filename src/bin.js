@@ -1,4 +1,4 @@
-////ask about skiping on load window
+/////ask about skiping on load window
 const binPOSTpath = "https://api.jsonbin.io/v3/b/602fa7b2bd6b755d0199af74" ;
 const binGETpath = "https://api.jsonbin.io/v3/b/602fa7b2bd6b755d0199af74/latest";
 const localpath = "http://localhost:3000/b/1";
